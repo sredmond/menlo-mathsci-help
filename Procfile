@@ -1,1 +1,1 @@
-web: gunicorn menlo-mathsci-help:app
+web: gunicorn hello:app
