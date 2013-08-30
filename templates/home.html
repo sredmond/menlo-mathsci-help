@@ -1,16 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-    <div class="jumbo">
-        <h2>Welcome to Menlo's Math and Science Help Center.</h2>
-        <h3>I want to:</h3>
-        <div>
+<div class="jumbo">
+    <h2>Menlo's Math and Science Help Center.</h2>
+    <h3>I want to:</h3>
+    <a href={{ url_for("learn") }} class="large_text">
+        <div id="learn">
             Learn
         </div>
-        <div>
+    </a>
+    <a href={{ url_for("teach") }} class="large_text">
+        <div id="teach">
             Teach
         </div>
-        <textarea name="console" id="console" readonly>{{console}}</textarea>
-    </div>
+    </a>
 </div>
 {% endblock %}
