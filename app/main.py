@@ -4,7 +4,7 @@ DEBUG = True
 app = Flask(__name__)
 
 @app.route('/')
-def home():
+def main():
   return "Hello World!"
 
 #Run the app
