@@ -17,12 +17,12 @@ def teach():
 	return render_template('teach.html')
 
 #Respond to form requests
-@app.route('/submitLearner')
+@app.route('/submitLearner', methods=['POST'])
 def submitLearner():
 	info = request.form
 	return render_template('home.html', console=str(info))
 
-@app.route('/submitTeacher')
+@app.route('/submitTeacher', methods=['POST'])
 def submitTeacher():
 	info = request.form
 	return render_template('home.html', console=str(info))

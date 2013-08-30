@@ -13,93 +13,96 @@
 <p>
 	The more information you give us about your problem, the more we can help you. So get going! Don't just skip the optional questions. Your experience WILL be better if you tell us more
 </p>
- <form action="submitLearner" method="post" >
+ <form name="submit" action="submitLearner" method="post" > 
  	<ul>
 		<li>
 			<h4>About You</h4>
 			<ul>
-				<li><input type="text" placeholder="First Name" /></li>
- 				<li><input type="text" placeholder="Last Name" /></li>
- 				<li><input type="number" placeholder="Grade"  min=9 max=12 /></li>
- 				<li><input type="text" placeholder="Preferred Email Address" /></li>
+				<li><input type="text" name="fn" placeholder="First Name" /></li>
+ 				<li><input type="text" name="ln" placeholder="Last Name" /></li>
+ 				<li><input type="number" name="grade" placeholder="Grade"  min=9 max=12 /></li>
+ 				<li><input type="email" name="email" placeholder="Preferred Email Address" /></li>
  			</ul>
 		</li>
 		<li>
  			<h4>What class do you need assistance in?</h4>
- 			Science
- 			<ul>
- 				<li>
- 					Physics
- 					<ul>
- 						<li><label><input value="Freshman Physics" type="checkbox" />Freshman Physics</label></li>
- 						<li><label><input value="AP Physics B" type="checkbox" />AP Physics B</label></li>
- 						<li><label><input value="AP Physics C" type="checkbox" />AP Physics C</label><li>
- 					</ul>
- 				</li>
- 				<li>
- 					Chemistry
- 					<ul>
-					 	<li><label><input value="Conceptual Chemistry" type="checkbox" />Conceptual Chemistry</li>
-					 	<li><label><input value="Accelerated Chemistry" type="checkbox" />Accelerated Chemistry</label></li>
-					 	<li><label><input value="AP Chemistry" type="checkbox" />AP Chemistry</label></li>
-					 	<li><label><input value="Organic Chemistry" type="checkbox" />Organic Chemistry</label></li>
+ 			<fieldset>
+ 				<legend>Science</legen>
+	 				<ul>
+	 					<li>
+	 					Physics
+	 					<ul>
+	 						<li><label><input name="freshPhys" type="checkbox" />Freshman Physics</label></li>
+	 						<li><label><input name="APPhysB" type="checkbox" />AP Physics B</label></li>
+	 						<li><label><input name="APPhysC" type="checkbox" />AP Physics C</label><li>
+	 					</ul>
+		 				</li>
+		 				<li>
+		 					Chemistry
+		 					<ul>
+							 	<li><label><input name="concChem" type="checkbox" />Conceptual Chemistry</li>
+							 	<li><label><input name="accelChem" type="checkbox" />Accelerated Chemistry</label></li>
+							 	<li><label><input name="APChem" type="checkbox" />AP Chemistry</label></li>
+							 	<li><label><input name="OChem" type="checkbox" />Organic Chemistry</label></li>
+							</ul>
+						</li>
+						<li>
+							Biological
+							<ul>
+							 	<li><label><input name="Bio" type="checkbox" />Biology</label></li>
+							 	<li><label><input name="ATBio" type="checkbox" />AT Biology</label></li>
+							 	<li><label><input name="anatAndPhys" type="checkbox" />Anatomy and Physiology</label></li>
+							</ul>
+						</li>
+						<li>
+							Other
+							<ul>
+								<li><label><input name="APES" type="checkbox" />AP Environmental Science</label></li>
+							</ul>
+						</li>
 					</ul>
-				</li>
-				<li>
-					Biological
-					<ul>
-					 	<li><label><input value="Biology" type="checkbox" />Biology</label></li>
-					 	<li><label><input value="AT Biology" type="checkbox" />AT Biology</label></li>
-					 	<li><label><input value="Anatomy and Physiology" type="checkbox" />Anatomy and Physiology</label></li>
-					</ul>
-				</li>
-				<li>
-					Other
-					<ul>
-						<li><label><input value="AP Environmental Science" type="checkbox" />AP Environmental Science</label></li>
-					</ul>
-				</li>
-			</ul>
+				</legend>
+			</fieldset>
 			Math
 			<ul>
  				<li>
  					Geometry
  					<ul>
- 						<li><label><input value="Intermediate Algebra" type="checkbox" />Intermediate Algebra</label></li>
- 						<li><label><input value="Analytic Geo" type="checkbox" />Analytic Geo</label></li>
- 						<li><label><input value="Analytic Geo (H)" type="checkbox" />Analytic Geo (H)</label><li>
+ 						<li><label><input name="alg1" type="checkbox" />Intermediate Algebra</label></li>
+ 						<li><label><input name="geo" type="checkbox" />Analytic Geo</label></li>
+ 						<li><label><input name="geoH" type="checkbox" />Analytic Geo (H)</label><li>
  					</ul>
  				</li>
  				<li>
  					Algebra 2
  					<ul>
-					 	<li><label><input value="Algebra 2" type="checkbox" />Algebra 2</label></li>
-					 	<li><label><input value="A2H" type="checkbox" />Algebra 2 (H)</label></li>
+					 	<li><label><input name="alg2" type="checkbox" />Algebra 2</label></li>
+					 	<li><label><input name="A2H" type="checkbox" />Algebra 2 (H)</label></li>
 					</ul>
 				</li>
 				<li>
 					Precalculus
 					<ul>
-					 	<li><label><input value="Functions, Statistics, and Trigonometry" type="checkbox" />Functions, Statistics, and Trigonometry</label></li>
-					 	<li><label><input value="Analytic Precalc" type="checkbox" />Analytic Precalc</label></li>
-					 	<li><label><input value="PoP" type="checkbox" />PoP</label></li>
-					 	<li><label><input value="PCH" type="checkbox" />PCH</label></li>
+					 	<li><label><input name="FST" type="checkbox" />Functions, Statistics, and Trigonometry</label></li>
+					 	<li><label><input name="AnalyticPC" type="checkbox" />Analytic Precalc</label></li>
+					 	<li><label><input name="PoP" type="checkbox" />PoP</label></li>
+					 	<li><label><input name="PCH" type="checkbox" />PCH</label></li>
 					</ul>
 				</li>
 				<li>
 					Calculus
 					<ul>
-					 	<li><label><input value="Intro to Calc w/ Applications" type="checkbox" />Intro to Calc w/ Applications</label></li>
-					 	<li><label><input value="AP Calc AB" type="checkbox" />AP Calc AB</label></li>
-					 	<li><label><input value="AP Calc BC" type="checkbox" />AP Calc BC</label></li>
+					 	<li><label><input name="seniorCalc" type="checkbox" />Intro to Calc w/ Applications</label></li>
+					 	<li><label><input name="calcAB" type="checkbox" />AP Calc AB</label></li>
+					 	<li><label><input name="calcBC" type="checkbox" />AP Calc BC</label></li>
 					</ul>
 				</li>
 				<li>
 					Other
 					<ul>
-						<li><label><input value="Stats" type="checkbox" />Stats</label></li>
-						<li><label><input value="AP Stats" type="checkbox" />AP Stats</label></li>
-						<li><label><input value="AT Math" type="checkbox" />AT Math</label></li>
+						<li><label><input value="stats" type="checkbox" />Stats</label></li>
+						<li><label><input value="APStats" type="checkbox" />AP Stats</label></li>
+						<li><label><input value="ATMath" type="checkbox" />AT Math</label></li>
 					</ul>
 				</li>
 			</ul>
@@ -108,19 +111,19 @@
 			<h4>Types of issues</h4>
 			What type of help do you need? Our big three categories are doing homework, studying for a test, and working on a long-term project
 			<ul>
-				<li><label><input value="Homework" type="radio" />Homework</label></li>
-				<li><label><input value="Test" type="radio" />Test</label></li>
-				<li><label><input value="Project" type="radio" />Project</label></li>
-				<li><label><input value="Other (please specify)" type="radio" />Other (please elaborate below)</label></li>
+				<li><label><input name="problem" value="hw" type="radio" />Homework</label></li>
+				<li><label><input name="problem" value="test" type="radio" />Test</label></li>
+				<li><label><input name="problem" value="proj" type="radio" />Project</label></li>
+				<li><label><input name="problem" value="other" type="radio" />Other (please elaborate below)</label></li>
 				<li><textarea form="submitLearner" placeholder="Please describe the challenge you're facing. The clearer, the better."></textarea></li>
  			</ul>
  		</li>
  		<li>
  			<h4>Additional Comments</h4>
  			<ul>
-				<li><textarea form="submitLearner" placeholder="Do you have any requests for particular tutors?"></textarea></li>
- 				<li><textarea form="submitLearner" placeholder="When are you available?"></textarea></li>
- 				<li><textarea form="submitLearner" placeholder="Anything else you want to say?"></textarea></li>
+				<li><textarea form="submitLearner" name="requests" placeholder="Do you have any requests for particular tutors?"></textarea></li>
+ 				<li><textarea form="submitLearner" name="availability" placeholder="When are you available?"></textarea></li>
+ 				<li><textarea form="submitLearner" name="additional_comments" placeholder="Anything else you want to say?"></textarea></li>
  			</ul>
  		</li>
 	</ul>
