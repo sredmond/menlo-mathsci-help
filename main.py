@@ -16,6 +16,17 @@ def learn():
 def teach():
 	return render_template('teach.html')
 
+#Respond to form requests
+@app.route('/submitLearner')
+def submitLearner():
+	info = request.form
+	return render_template('home.html', console=str(info))
+
+@app.route('/submitTeacher')
+def submitTeacher():
+	info = request.form
+	return render_template('home.html', console=str(info))
+
 #Run the app
 if __name__ == '__main__':
   app.run(debug=DEBUG)
