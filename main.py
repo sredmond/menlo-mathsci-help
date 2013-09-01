@@ -16,6 +16,10 @@ def learn():
 def teach():
 	return render_template('teach.html')
 
+@app.route('/contribute')
+def contribute():
+	return render_template('contribute.html')
+
 #Respond to form requests
 @app.route('/submitLearner', methods=['POST'])
 def submitLearner():

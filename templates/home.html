@@ -1,18 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="jumbo">
-    <h2>Menlo's Math and Science Help Center.</h2>
-    <h3>I want to:</h3>
-    <a href={{ url_for("learn") }} class="large_text">
-        <div id="learn">
-            Learn
-        </div>
-    </a>
-    <a href={{ url_for("teach") }} class="large_text">
-        <div id="teach">
-            Teach
-        </div>
-    </a>
+<div class="container">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+        <h1>Hello!</h1>
+        <p>Welcome to Menlo's Math and Science Help Center.</p>
+        <p>I want to:</p>
+        <p>
+            <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span4 pull-left">Learn &raquo;</a>
+            <a href= {{ url_for('teach') }} class="btn btn-primary btn-large span4 pull-right">Teach &raquo;</a>
+        </p>
+    </div>
+    <div class="row">
+        <div class="span4">
+          <h2>Overview</h2>
+          <p>This is how it gon work buddy boy: donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+      </div>
+      <div class="span4">
+          <h2>Our Philosophy</h2>
+          <p>We believe that... donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+      </div>
+      <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+      </div>
+    </div>
+    <hr>
     <textarea name="console" id="console" readonly>{{console}}</textarea>
+    <hr>
+    <footer>
+        <p>&copy; Sam Redmond, 2013</p>
+    </footer>
 </div>
 {% endblock %}
