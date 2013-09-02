@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+	<ul>
+	{% for r in requests %}
+  		<div class="span6">
+  			<h2>Request<small> by {{ r.grade }}th grader {{ r.first_name }} {{ r.last_name }} ({{ r.email }})</small></h2>
+  			<ul>
+  			{% for cl in r.classes %}
+  				<li>
+  					{{ cl }}
+  				</li>
+  			{% endfor %}
+  			<ul>
+  			<p>The issue is {{ r.issue }}. In more detail, {{ r.challenge }} </p>
+  			<p>Requests for a particular tutor: {{ r.requests }}</p>
+  			<p>Availability: {{ r.availability }}</p>
+  			<p>Additional Comments: {{ r.additional }}</p>
+  		</div>
+	{% endfor %}
+	</ul>
+</div>
+{% endblock %}

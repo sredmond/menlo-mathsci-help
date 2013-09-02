@@ -1,123 +1,186 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2>The Teaching Zone</h2>
-<p>
-	So you want to be a tutor, huh? You think you have what it takes to be the very best?
-</p>
-<p>
-	We appreciate your willingness to help others, but keep in mind that tutoring is not a light responsibility. It is your job to show up to every meeting prepared and ready to engage your student to your utmost.
-</p>
-<p>
-	With that said, hop on board. The MSHC is always happy to have new members
-</p>
- <form action="submitTutor" method="post" >
-	<ul>
-		<li>
-			<h4>About You</h4>
-			<ul>
-				<li><input type="text" placeholder="First Name" /></li>
- 				<li><input type="text" placeholder="Last Name" /></li>
- 				<li><input type="number" placeholder="Grade"  min=9 max=12/></li>
- 				<li><input type="text" placeholder="Preferred Email Address" /></li>
- 			</ul>
-		</li>
-		<li>
- 			<h4>Which classes can you tutor?</h4>
- 			Science
- 			<ul>
- 				<li>
- 					Physics
- 					<ul>
- 						<li><label><input value="Freshman Physics" type="checkbox" />Freshman Physics</label></li>
- 						<li><label><input value="AP Physics B" type="checkbox" />AP Physics B</label></li>
- 						<li><label><input value="AP Physics C" type="checkbox" />AP Physics C</label><li>
- 					</ul>
- 				</li>
- 				<li>
- 					Chemistry
- 					<ul>
-					 	<li><label><input value="Conceptual Chemistry" type="checkbox" />Conceptual Chemistry</li>
-					 	<li><label><input value="Accelerated Chemistry" type="checkbox" />Accelerated Chemistry</label></li>
-					 	<li><label><input value="AP Chemistry" type="checkbox" />AP Chemistry</label></li>
-					 	<li><label><input value="Organic Chemistry" type="checkbox" />Organic Chemistry</label></li>
-					</ul>
-				</li>
-				<li>
-					Biological
-					<ul>
-					 	<li><label><input value="Biology" type="checkbox" />Biology</label></li>
-					 	<li><label><input value="AT Biology" type="checkbox" />AT Biology</label></li>
-					 	<li><label><input value="Anatomy and Physiology" type="checkbox" />Anatomy and Physiology</label></li>
-					</ul>
-				</li>
-				<li>
-					Other
-					<ul>
-						<li><label><input value="AP Environmental Science" type="checkbox" />AP Environmental Science</label></li>
-					</ul>
-				</li>
-			</ul>
-			Math
-			<ul>
- 				<li>
- 					Geometry
- 					<ul>
- 						<li><label><input value="Intermediate Algebra" type="checkbox" />Intermediate Algebra</label></li>
- 						<li><label><input value="Analytic Geo" type="checkbox" />Analytic Geo</label></li>
- 						<li><label><input value="Analytic Geo (H)" type="checkbox" />Analytic Geo (H)</label><li>
- 					</ul>
- 				</li>
- 				<li>
- 					Algebra 2
- 					<ul>
-					 	<li><label><input value="Algebra 2" type="checkbox" />Algebra 2</label></li>
-					 	<li><label><input value="A2H" type="checkbox" />Algebra 2 (H)</label></li>
-					</ul>
-				</li>
-				<li>
-					Precalculus
-					<ul>
-					 	<li><label><input value="Functions, Statistics, and Trigonometry" type="checkbox" />Functions, Statistics, and Trigonometry</label></li>
-					 	<li><label><input value="Analytic Precalc" type="checkbox" />Analytic Precalc</label></li>
-					 	<li><label><input value="PoP" type="checkbox" />PoP</label></li>
-					 	<li><label><input value="PCH" type="checkbox" />PCH</label></li>
-					</ul>
-				</li>
-				<li>
-					Calculus
-					<ul>
-					 	<li><label><input value="Intro to Calc w/ Applications" type="checkbox" />Intro to Calc w/ Applications</label></li>
-					 	<li><label><input value="AP Calc AB" type="checkbox" />AP Calc AB</label></li>
-					 	<li><label><input value="AP Calc BC" type="checkbox" />AP Calc BC</label></li>
-					</ul>
-				</li>
-				<li>
-					Other
-					<ul>
-						<li><label><input value="Stats" type="checkbox" />Stats</label></li>
-						<li><label><input value="AP Stats" type="checkbox" />AP Stats</label></li>
-						<li><label><input value="AT Math" type="checkbox" />AT Math</label></li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<h4>Teacher Information</h4>
-			We trust that you know your stuff, but just to make sure, please enter the name and email address of a teacher we can speak to in order to verify your qualifications
-			<ul>
-				<li><input type="text" placeholder="First Name" /></li>
- 				<li><input type="text" placeholder="Last Name" /></li>
- 				<li><input type="text" placeholder="Email" /></li>
- 			</ul>
- 		</li>
- 		<li>
- 			<h4>Additional Comments</h4>
- 			<ul>
-				<li><textarea form="submitTutor" placeholder="Do you have any requests for students?"></textarea></li>
- 				<li><textarea form="submitTutor" placeholder="When are you available?"></textarea></li>
- 				<li><textarea form="submitTutor" placeholder="Anything else you want to say?"></textarea></li>
- 			</ul>
- 		</li>
-	</ul>
- 	<input type="submit" id="submit_learner" value="Go!" />
+<div class="container">
+	<h2>The Teaching Zone</h2>
+	<p>
+		So you want to be a tutor, huh? You think you have what it takes to be the very best?
+	</p>
+	<p>
+		We appreciate your willingness to help others, but keep in mind that tutoring is not a light responsibility. It is your job to show up to every meeting prepared and ready to engage your student to your utmost.
+	</p>
+	<p>
+		With that said, hop on board. The MSHC is always happy to have new members
+	</p>
+	<form id="submit" action="submitTeacher" method="post" class="form-horizontal">
+		<fieldset>
+			<legend>About You</legend>
+			<div class="control-group">
+				<label class="control-label" for="first-name">First Name</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-font"></i></span>
+						<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="last-name">Last Name</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-font"></i></span>
+						<input class="span2" id="last-name" name="last_name" type="text" placeholder="Last Name">
+					</div>	
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="grade">Grade</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on">#</span>
+						<input class="span2" id="grade" name="grade" type="number" min=9 max=12>
+					</div>	
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="email">Email Address</label>
+				<div class="controls">
+					<div class="input-prepend input-append">
+						<span class="add-on"><i class="icon-envelope"></i></span>
+						<input class="span2" id="email" name="email" type="text" placeholder="example">
+						<span class="add-on">@menloschool.org</span>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>What class(es) can you help with?</legend>
+			<select name="science" form="submit" multiple="multiple" size="21" class="pull-left span4">
+				<optgroup label="Physics">
+					<option value="fresh_phys">Freshman Physics</option>
+					<option value="ap_phys_b">AP Physics B</option>
+					<option value="ap_phys_c">AP Physics C</option>
+				</optgroup>
+				<optgroup label="Chemistry">
+					<option value="conc_chem">Conceptual Chemistry</option>
+					<option value="accel_chem">Accelerated Chemistry</option>
+					<option value="ap_chem">AP Chemistry</option>
+					<option value="o_chem">Organic Chemistry</option>
+				</optgroup>
+				<optgroup label="Biology">
+					<option value="bio">Biology</option>
+					<option value="at_bio">AT Biology</option>
+					<option value="anat_and_phys">Anatomy and Physiology</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option value="apes">AP Environmental Science</option>
+				</optgroup>
+			</select>
+			<select name="math" form="submit" multiple="multiple" size="21" class="pull-left span4">
+				<optgroup label="Algebra 1">
+					<option value="inter_alg">Intermediate Algebra</option>
+				</optgroup>
+				<optgroup label="Geometry">
+					<option value="geo">Analytic Geometry</option>
+					<option value="geoh">Analytic Geometry (H)</option>
+				</optgroup>
+				<optgroup label="Algebra 2">
+					<option value="a2">Algebra 2</option>
+					<option value="a2h">Algebra 2 (H)</option>
+				</optgroup>
+				<optgroup label="Precalculus">
+					<option value="fst">Functions, Statistics, and Trigonometry</option>
+					<option value="pop">Principles of Precalculus</option>
+					<option value="apc">Analytical Precalculus</option>
+					<option value="pch">Precalculus (H)</option>
+				</optgroup>
+				<optgroup label="Calculus">
+					<option value="calc">Intro to Calculus</option>
+					<option value="calc_ab">AP Calculus AB</option>
+					<option value="calc_bc">AP Calculus BC</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option value="stats">Statistics</option>
+					<option value="ap_stats">AP Statistics</option>
+					<option value="at_math">AT Math</option>
+				</optgroup>
+			</select>
+			<select name="cs_as" form="submit" multiple="multiple" size="21" class="pull-left span4">
+				<optgroup label="Computer Science">
+					<option value="intro_cs">Intro to Programming</option>
+					<option value="ap_cs">AP Computer Science</option>
+					<option value="at_cs">AT Computer Science</option>
+				</optgroup>
+				<optgroup label="Lorem">
+					<option>Put the applied science stuff here</option>
+					<option>Lorem</option>
+					<option>Ipsem</option>
+					<option>Dolor</option>
+				</optgroup>
+				<optgroup label="Ipsur">
+					<option>Emet</option>
+					<option>Misra</option>
+					<option>Ol</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option>Lared</option>
+				</optgroup>
+			</select>
+		</fieldset>
+		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
+		<fieldset>
+			<legend>Qualifications</legend>
+			<p>We trust that you know your stuff, but just to make sure, please enter the name and email address of a teacher we can speak to in order to verify your qualifications</p>
+			<div class="control-group">
+				<label class="control-label" for="teacher-first-name">Teacher's First Name</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-font"></i></span>
+						<input class="span2" id="teacher-first-name" name="teacher_first_name"type="text" placeholder="First Name">
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="teacher-last-name">Teacher's Last Name</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-font"></i></span>
+						<input class="span2" id="lteacher-ast-name" name="teacher_last_name" type="text" placeholder="Last Name">
+					</div>	
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="teacher-email">Teacher's Email Address</label>
+				<div class="controls">
+					<div class="input-prepend input-append">
+						<span class="add-on"><i class="icon-envelope"></i></span>
+						<input class="span2" id="teacher-email" name="teacher_email" type="text" placeholder="example">
+						<span class="add-on">@menloschool.org</span>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Additional Information</legend>
+			<div class="control-group">  
+				<label class="control-label" for="textarea">Requests</label>  
+				<div class="controls">  
+					<textarea rows=4 form="submit" name="requests" placeholder="Do you have any requests for particular students?" class="span4"></textarea>
+				</div>  
+			</div>  
+			<div class="control-group">  
+				<label class="control-label" for="textarea">Availability</label>  
+				<div class="controls">  
+					<textarea rows=4 form="submit" name="availability" placeholder="When are you available? Include your free period, if applicable." class="span4"></textarea>
+				</div>  
+			</div>  
+			<div class="control-group">  
+				<label class="control-label" for="textarea">Comments</label>  
+				<div class="controls">  
+					<textarea rows=4 form="submit" name="additional_comments" placeholder="Is there anything else you would to add?" class="span4"></textarea>
+				</div>  
+			</div>
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Submit!</button>
+	</form>
+</div>
 {% endblock %}
