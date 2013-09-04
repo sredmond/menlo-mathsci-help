@@ -1,16 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
         <h1>Hello!</h1>
         <p>Welcome to Menlo's Math and Science Help Center.</p>
         <p>I want to:</p>
-        <p>
-            <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span4 pull-left">Learn &raquo;</a>
-            <a href= {{ url_for('teach') }} class="btn btn-primary btn-large span4 pull-right">Teach &raquo;</a>
-        </p>
+        <div class="btn-group">
+            <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span5">Learn &raquo;</a>
+            <a href= {{ url_for('teach') }} class="btn btn-success btn-large span5">Teach &raquo;</a>
+        </div>
     </div>
     <div class="row">
         <div class="span4">
@@ -30,7 +29,7 @@
       </div>
     </div>
     <hr>
-    <textarea rows=4 name="console" id="console" class="input-block-level" readonly>{{console}}</textarea>
+    <textarea rows=4 name="console" id="console" class="input-block-level" placeholder="This console is for debugging purposes" readonly>{{console}}</textarea>
     <hr>
     <footer>
         <p>&copy; Sam Redmond, 2013</p>

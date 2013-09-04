@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<!--This is the page I'm actively editing... the teach.html page will come next-->
 <div class="container">
 	<h2>The Learning Zone</h2>
 	<p>
@@ -14,6 +15,10 @@
 	<p>
 		The more information you give us about your problem, the more we can help you. So get going! Don't just skip the optional questions. Your experience WILL be better if you tell us more
 	</p>
+	<div class="alert">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>Warning!</strong> There are errors in your form. Please correct these before submitting.
+	</div>
 	<form id="submit" action="submitLearner" method="post" class="form-horizontal">
 		<fieldset>
 			<legend>About You</legend>
@@ -40,7 +45,7 @@
 				<div class="controls">
 					<div class="input-prepend">
 						<span class="add-on">#</span>
-						<input class="span2" id="grade" name="grade" type="number" min=9 max=12>
+						<input class="span2" id="grade" name="grade" type="number" min=9 max=12 placeholder="Between 9 and 12">
 					</div>	
 				</div>
 			</div>
@@ -113,6 +118,7 @@
 					<option value="ap_cs">AP Computer Science</option>
 					<option value="at_cs">AT Computer Science</option>
 				</optgroup>
+				<!-- Don't forget values Sam!-->
 				<optgroup label="Lorem">
 					<option>Put the applied science stuff here</option>
 					<option>Lorem</option>
@@ -133,31 +139,6 @@
 		<fieldset>
 			<legend>Specific Challenge</legend>
 			<p>We categorize assistance into three categories - finishing homework, studying for a test, and working on a long-term project</p>
-			<!--<div class="control-group">  
-            	<label class="control-label" for="textarea">Homework</label>  
-            	<div class="controls">  
-					<input type="radio" name="issue" id="hw" value="hw">
-            	</div>  
-        	</div>
-        	<div class="control-group">  
-            	<label class="control-label" for="textarea">Test</label>  
-            	<div class="controls">  
-					<input type="radio" name="issue" id="test" value="test">
-            	</div>  
-        	</div>
-        	<div class="control-group">  
-            	<label class="control-label" for="textarea">Project</label>  
-            	<div class="controls">
-					<input type="radio" name="issue" id="project" value="project">
-            	</div>  
-        	</div>
-        	<div class="control-group">  
-            	<label class="control-label" for="textarea">Other (please elaborate)</label>  
-            	<div class="controls">  
-					<input type="radio" name="issue" id="other" value="other">
-					<input type="text" name="issue_elaboration" id="elaboraton" disabled>
-            	</div>  
-        	</div>-->
         	<label class="radio">
 			  <input type="radio" name="issue" id="hw" value="hw">
 			  Homework
@@ -203,7 +184,7 @@
             	</div>  
         	</div>
 		</fieldset>
-		<button type="submit" class="btn btn-primary">Submit!</button>
+		<button type="submit" class="btn btn-primary" id="submit_button">Submit!</button>
 	</form>
 </div>
 {% endblock %}

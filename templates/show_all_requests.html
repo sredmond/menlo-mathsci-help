@@ -1,23 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-	<ul>
-	{% for r in requests %}
-  		<div class="span6">
-  			<h2>Request<small> by {{ r.grade }}th grader {{ r.first_name }} {{ r.last_name }} ({{ r.email }})</small></h2>
-  			<ul>
-  			{% for cl in r.classes %}
-  				<li>
-  					{{ cl }}
-  				</li>
-  			{% endfor %}
-  			<ul>
-  			<p>The issue is {{ r.issue }}. In more detail, {{ r.challenge }} </p>
-  			<p>Requests for a particular tutor: {{ r.requests }}</p>
-  			<p>Availability: {{ r.availability }}</p>
-  			<p>Additional Comments: {{ r.additional }}</p>
-  		</div>
-	{% endfor %}
-	</ul>
+	<div class="accordion" id="accordion">
+		{% for r in requests %}
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
+					Request <small>by {{ r.first_name }} {{ r.last_name }} at {{ r.pretty_time }}</small>
+				</a>
+			</div>
+			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
+				<div class="accordion-inner">
+					{{ r.first_name }} {{ r.last_name }} is in {{ r.grade }}th grade (email is {{ r.email }}).<br />
+					He/she has requested help with {{ r.issue }} in the following classes:
+					<ul class="unstyled">
+						{% for cl in r.classes %}
+						<li>
+							{{ cl }}
+						</li>
+						{% endfor %}
+					</ul>
+					<dl class="dl-horizontal">
+						<dt>More information</dt>
+						<dd>{{ r.challenge }}</dd>
+						<dt>Requests</dt>
+						<dd>{{ r.requests }}</dd>
+						<dt>Availability</dt>
+						<dd>{{ r.availability }}</dd>
+						<dt>Additional Comments</dt>
+						<dd>{{ r.additional }}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 </div>
-{% endblock %}
+{% endblock %}	

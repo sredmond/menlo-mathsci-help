@@ -57,7 +57,7 @@ def submitLearner():
 	read = open(path, 'rb')
 	current_requests = cp.load(read)
 	read.close()
-	current_requests.append(req)
+	current_requests = [req] + current_requests #I do it in this order so the requests display chronologically
 	write = open(path, 'wb')
 	cp.dump(current_requests, write)
 	write.close()
