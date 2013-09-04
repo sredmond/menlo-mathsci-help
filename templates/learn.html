@@ -15,7 +15,7 @@
 	<p>
 		The more information you give us about your problem, the more we can help you. So get going! Don't just skip the optional questions. Your experience WILL be better if you tell us more
 	</p>
-	<div class="alert">
+	<div class="alert hidden">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<strong>Warning!</strong> There are errors in your form. Please correct these before submitting.
 	</div>
@@ -29,6 +29,7 @@
 						<span class="add-on"><i class="icon-font"></i></span>
 						<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
 					</div>
+					<span id="test-label" class="label label-success"><i class="icon-ok icon-white"></i></span>
 				</div>
 			</div>
 			<div class="control-group">
@@ -118,20 +119,17 @@
 					<option value="ap_cs">AP Computer Science</option>
 					<option value="at_cs">AT Computer Science</option>
 				</optgroup>
-				<!-- Don't forget values Sam!-->
-				<optgroup label="Lorem">
-					<option>Put the applied science stuff here</option>
-					<option>Lorem</option>
-					<option>Ipsem</option>
-					<option>Dolor</option>
+				<optgroup label="Applied Science">
+					<option value="asr">ASR (H)</option>
+					<option value="biotech">Biotechnology/Science Research</option>
+					<option value="robo">Electronics/Robotics</option>
 				</optgroup>
-				<optgroup label="Ipsur">
-					<option>Emet</option>
-					<option>Misra</option>
-					<option>Ol</option>
+				<optgroup label="Engineering">
+					<option value="eng1">Fundamentals of Engineering</option>
+					<option value="eng2">Entrepreneurship Engineering</option>
 				</optgroup>
 				<optgroup label="Other">
-					<option>Lared</option>
+					<option value="tool_safety">Design Thinking and Tool Safety (IS)</option>
 				</optgroup>
 			</select>
 		</fieldset>
