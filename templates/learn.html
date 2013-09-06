@@ -15,21 +15,21 @@
 	<p>
 		The more information you give us about your problem, the more we can help you. So get going! Don't just skip the optional questions. Your experience WILL be better if you tell us more
 	</p>
-	<div class="alert hidden">
+	<div class="alert">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
   		<strong>Warning!</strong> There are errors in your form. Please correct these before submitting.
 	</div>
 	<form id="submit" action="submitLearner" method="post" class="form-horizontal">
 		<fieldset>
 			<legend>About You</legend>
-			<div class="control-group">
+			<div class="control-group success">
 				<label class="control-label" for="first-name">First Name</label>
 				<div class="controls">
 					<div class="input-prepend">
 						<span class="add-on"><i class="icon-font"></i></span>
 						<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
 					</div>
-					<span id="test-label" class="label label-success"><i class="icon-ok icon-white"></i></span>
+					<span id="test-label" class="label label-success">OK</i></span>
 				</div>
 			</div>
 			<div class="control-group">
@@ -138,7 +138,7 @@
 			<legend>Specific Challenge</legend>
 			<p>We categorize assistance into three categories - finishing homework, studying for a test, and working on a long-term project</p>
         	<label class="radio">
-			  <input type="radio" name="issue" id="hw" value="hw">
+			  <input type="radio" name="issue" id="hw" value="hw" checked="checked">
 			  Homework
 			</label>
 			<label class="radio">
@@ -152,13 +152,13 @@
 			<label class="radio inline">
 			  <input type="radio" name="issue" id="other" value="other">
 			  Other (please elaborate)
-			  <input type="text" name="issue_elaboration" id="elaboraton" disabled>
+			  <input type="text" name="elaboration" id="elaboration" disabled="disabled">
 			</label>
 		</fieldset>
 		<fieldset>
 			<legend>Additional Information</legend>
 			<div class="control-group">  
-            	<label class="control-label" for="textarea">Elaborate</label>  
+            	<label class="control-label" for="textarea">Specific Challenge</label>  
             	<div class="controls">  
 					<textarea rows=4 form="submit" name="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
             	</div>  

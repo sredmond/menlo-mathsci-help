@@ -3,8 +3,9 @@ from flask import Flask, request, render_template, url_for
 import cPickle as cp
 from mshc_lib import *
 
-DEBUG=True
+DEBUG=True #CHANGE THIS TO FALSE ON MAJOR RELEASES
 app = Flask(__name__)
+pickle_path = os.path.join(os.getcwd(), 'requests/pickled_requests.txt')
 
 #Load pages
 @app.route('/')
@@ -18,6 +19,13 @@ def learn():
 @app.route('/teach')
 def teach():
 	return render_template('teach.html')
+
+@app.route('/show_all_requests')
+def show_all_requests():
+	read = open(pickle_path, 'rb')
+	current_requests = cp.load(read)
+	read.close()
+	return render_template('show_all_requests.html', requests=current_requests)
 
 #Respond to form requests
 @app.route('/submitLearner', methods=['POST'])
@@ -53,12 +61,11 @@ def submitLearner():
 
 	#THIS IS BAD AND SLOW. CHANGE IT LATER. 
 	req = Request(params)
-	path = os.path.join(os.getcwd(), 'requests/pickled_requests.txt')
-	read = open(path, 'rb')
+	read = open(pickle_path, 'rb')
 	current_requests = cp.load(read)
 	read.close()
 	current_requests = [req] + current_requests #I do it in this order so the requests display chronologically
-	write = open(path, 'wb')
+	write = open(pickle_path, 'wb')
 	cp.dump(current_requests, write)
 	write.close()
 
