@@ -49,11 +49,18 @@ $(document).ready(function()
 		return str == null || str == "";
 	}
 
+	function isEmail(str)
+	{
+		var patt = /^[a-zA-Z0-9._%+-]+$/;
+		return patt.test(str);
+	}
+
 	$("#submit_button").click(function()
 	{
 		//Do something here
 	});
 
+//Some form validation
 	$("#first-name").blur(function()
 	{
 		var group = $("#first-name-control-group");
@@ -78,6 +85,83 @@ $(document).ready(function()
 		else
 		{
 			mark_error(group, label, "Please change this input. I can't understand it.");
+		}
+	});
+
+	$("#last-name").blur(function()
+	{
+		var group = $("#last-name-control-group");
+		//Reset classes to default
+		group.removeClass();
+		group.addClass('control-group');
+
+		var label = $("#last-name-label");
+		//Reset classes to default
+		label.removeClass(); 
+		label.addClass('label');
+
+		var text = escapeHTML($(this).val());
+		if (isAlpha(text))
+		{
+			mark_success(group, label);
+		}
+		else if (isEmpty(text))
+		{
+			mark_warning(group, label, "You need to enter something!");			
+		}
+		else
+		{
+			mark_error(group, label, "Please change this input. I can't understand it.");
+		}
+	});
+
+	$("#grade").blur(function()
+	{
+		var group = $("#grade-control-group");
+		//Reset classes to default
+		group.removeClass();
+		group.addClass('control-group');
+
+		var label = $("#grade-label");
+		//Reset classes to default
+		label.removeClass(); 
+		label.addClass('label');
+
+		var text = escapeHTML($(this).val());
+		if (text === '9' || text === '10' || text === '11' || text === '12')
+		{
+			mark_success(group, label);
+		}
+		else
+		{
+			mark_error(group, label, "Grade must be either 9, 10, 11, or 12");
+		}
+	});
+
+	$("#email").blur(function()
+	{
+		var group = $("#email-control-group");
+		//Reset classes to default
+		group.removeClass();
+		group.addClass('control-group');
+
+		var label = $("#email-label");
+		//Reset classes to default
+		label.removeClass(); 
+		label.addClass('label');
+
+		var text = escapeHTML($(this).val());
+		if (isEmail(text))
+		{
+			mark_success(group, label);
+		}
+		else if (isEmpty(text))
+		{
+			mark_warning(group, label, "You need to enter something!");			
+		}
+		else
+		{
+			mark_error(group, label, "I don't think that is a valid email address. Please change it.");
 		}
 	});
 
