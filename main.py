@@ -112,8 +112,7 @@ def submitMessage():
 	write = open(feedback_path, 'wb')
 	cp.dump(all_messages, write)
 	write.close()
-	return render_template('home.html', console=[str(m) for m in all_messages])
-
+	
 	return render_template('home.html', console="Thanks for submitting feedback!")
 
 #Run the app
