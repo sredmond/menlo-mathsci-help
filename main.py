@@ -64,7 +64,7 @@ def submitLearner():
 	all_classes.extend(sci_classes)
 	all_classes.extend(math_classes)
 	all_classes.extend(other_classes)
-	params['all_classes'] = filter(lambda x: x in classes, all_classes) #Will only store values that are in our class list
+	params['all_classes'] = filter(lambda x: x in classesMap, all_classes) #Will only store values that are in our class list
 	
 	#Type of issue
 	issue = info['issue']

@@ -2,7 +2,7 @@
 ##The two high level classes are Requests and People
 import time
 
-classes = {"fresh_phys":"Freshman Physics", 
+classesMap = {"fresh_phys":"Freshman Physics", 
 	"ap_phys_b":"AP Physics B", 
 	"ap_phys_c":"AP Physics C", 
 	"conc_chem":"Conceptual Chemistry", 
@@ -49,6 +49,7 @@ class Request:
 
 		#Classes
 		self.classes=params['all_classes']
+		self.pretty_classes=[classesMap[cl] for cl in self.classes]
 		
 		#Type of issue
 		self.issue = params['issue']
