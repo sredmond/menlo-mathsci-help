@@ -51,7 +51,7 @@ $(document).ready(function()
 
 	$("#submit_button").click(function()
 	{
-		alert("Hit the submit button!");
+		//Do something here
 	});
 
 	$("#first-name").blur(function()
@@ -80,6 +80,8 @@ $(document).ready(function()
 			mark_error(group, label, "Please change this input. I can't understand it.");
 		}
 	});
+
+	//Enables the textarea if a user toggles to the 'other' radio button, and disables it if a user toggles to some other radio button
 	//Not the fastest... but it works for now :/
 	$("input[name=issue]").change(function()
 	{

@@ -6,7 +6,7 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-					Request <small>by {{ r.first_name }} {{ r.last_name }} at {{ r.pretty_time }}</small>
+					Request <small>by {{ r.first_name }} {{ r.last_name }} on {{ r.pretty_time }}</small>
 				</a>
 			</div>
 			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">

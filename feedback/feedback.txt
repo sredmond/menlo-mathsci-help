@@ -1,0 +1,24 @@
+(lp1
+(imshc_lib
+Message
+p2
+(dp3
+S'content'
+p4
+VWoah there
+p5
+sS'title'
+p6
+VAnother message
+p7
+sba(imshc_lib
+Message
+p8
+(dp9
+g4
+VSome content
+p10
+sg6
+VMy first feedback!
+p11
+sba.

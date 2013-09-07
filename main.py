@@ -6,6 +6,7 @@ from mshc_lib import *
 DEBUG=True #CHANGE THIS TO FALSE ON MAJOR RELEASES
 app = Flask(__name__)
 pickle_path = os.path.join(os.getcwd(), 'requests/pickled_requests.txt')
+feedback_path = os.path.join(os.getcwd(), 'feedback/feedback.txt')
 
 #Load pages
 @app.route('/')
@@ -27,6 +28,22 @@ def show_all_requests():
 	read.close()
 	return render_template('show_all_requests.html', requests=current_requests)
 
+@app.route('/feedback')
+def feedback():
+	return render_template('feedback.html')
+
+@app.route('/view_messages')
+def view_messages():
+	read = open(feedback_path, 'rb')
+	all_messages = cp.load(read)
+	read.close()
+	return render_template('view_messages.html', messages=all_messages)
+
+#Set URL rules for modals (?!)
+@app.route('/modal_overview')
+def modal_overview():
+	return render_template('modal_overview.html')
+
 #Respond to form requests
 @app.route('/submitLearner', methods=['POST'])
 def submitLearner():
@@ -47,7 +64,7 @@ def submitLearner():
 	all_classes.extend(sci_classes)
 	all_classes.extend(math_classes)
 	all_classes.extend(other_classes)
-	params['all_classes'] = all_classes
+	params['all_classes'] = filter(lambda x: x in classes, all_classes) #Will only store values that are in our class list
 	
 	#Type of issue
 	issue = info['issue']
@@ -75,6 +92,29 @@ def submitLearner():
 def submitTeacher():
 	info = request.form
 	return render_template('home.html', console=str(info))
+
+@app.route('/submitMessage', methods=['POST'])
+def submitMessage():
+	info = request.form
+	params = {}
+
+	params['title'] = info['title']
+	params['feedback'] = info['feedback']
+	
+	message = Message(params)
+
+	read = open(feedback_path, 'rb')
+	all_messages = cp.load(read)
+	read.close()
+	
+	all_messages = [message] + all_messages
+	
+	write = open(feedback_path, 'wb')
+	cp.dump(all_messages, write)
+	write.close()
+	return render_template('home.html', console=[str(m) for m in all_messages])
+
+	return render_template('home.html', console="Thanks for submitting feedback!")
 
 #Run the app
 if __name__ == '__main__':

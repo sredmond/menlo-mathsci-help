@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
+    <div class="alert alert-block alert-info">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Important!</h4>
+        <p>I've worked very hard on this website, but there will inevitably be a few bugs (errors), since it is still in beta. If you encounter any, please please please let me know. You can do this by going to the "Feedback" tab and writing me a note. I'll try to fix errors as quickly as possible. Even if there isn't an error, feel free to write a note saying how much you love math and science. Or how much you hate it. I don't judge.</p>
+        <p>-Sam R.</p>
+    </div>
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
         <h1>Hello!</h1>
@@ -15,7 +21,7 @@
         <div class="span4">
             <h2>Overview</h2>
             <p>This is how it gon work buddy boy: donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a href="#myModal" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+            <p><a data-target="#myModal" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
         </div>
         <div class="span4">
           <h2>Our Philosophy</h2>
@@ -44,30 +50,11 @@
       <h3 id="myModalLabel">Overview</h3>
   </div>
   <div class="modal-body">
-      <h4>Text in a modal</h4>
-      <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
-
-      <h4>Popover in a modal</h4>
-      <p>This <a href="#" role="button" class="btn popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
-
-      <h4>Tooltips in a modal</h4>
-      <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.<a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>.</p>
-
-      <hr>
-
-      <h4>Overflowing text to show optional scrollbar</h4>
-      <p>We set a fixed <code>max-height</code> on the <code>.modal-body</code>. Watch it overflow with all this extra lorem ipsum text we've included.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-  </div>
-  <div class="modal-footer">
-      <button class="btn" data-dismiss="modal">Close</button>
-      <button class="btn btn-primary">Save changes</button>
-  </div>
+    CONTENT SHOULD GO HERE
+</div>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal">Close</button>
+</div>
 </div>
 <!--End overview-->
 </div>
