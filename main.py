@@ -91,7 +91,35 @@ def submitLearner():
 @app.route('/submitTeacher', methods=['POST'])
 def submitTeacher():
 	info = request.form
-	return render_template('home.html', console=str(info))
+
+	params={}
+
+	#User information
+	params['first_name'] = info['first_name']
+	params['last_name'] = info['last_name']
+	params['grade'] = int(info['grade'])
+	params['email'] = info['email'] + "@menloschool.org"
+
+	#Classes
+	sci_classes = info.getlist('science')
+	math_classes = info.getlist('math')
+	other_classes = info.getlist('cs_as')
+	all_classes = []
+	all_classes.extend(sci_classes)
+	all_classes.extend(math_classes)
+	all_classes.extend(other_classes)
+	params['all_classes'] = filter(lambda x: x in classesMap, all_classes) #Will only store values that are in our class list
+
+	read = open(pickle_path, 'rb')
+	current_requests = cp.load(read)
+	read.close()
+
+	filtered_requests = []
+	for req in current_requests:
+		if matches(req, all_classes):
+			filtered_requests.append(req)
+
+	return render_template('show_all_requests.html', requests=filtered_requests)
 
 @app.route('/submitMessage', methods=['POST'])
 def submitMessage():
@@ -100,6 +128,7 @@ def submitMessage():
 
 	params['title'] = info['title']
 	params['feedback'] = info['feedback']
+	params['type'] = info['feedback_type']
 	
 	message = Message(params)
 
@@ -112,7 +141,7 @@ def submitMessage():
 	write = open(feedback_path, 'wb')
 	cp.dump(all_messages, write)
 	write.close()
-	
+
 	return render_template('home.html', console="Thanks for submitting feedback!")
 
 #Run the app

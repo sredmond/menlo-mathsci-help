@@ -5,30 +5,93 @@ p2
 (dp3
 S'content'
 p4
-VAHH xss
+Vsql injection! haha
 p5
-sS'title'
+sS'type'
 p6
-VSomething weird here
+Vbug_report
 p7
+sS'title'
+p8
+VI found an actual error
+p9
 sba(imshc_lib
 Message
-p8
-(dp9
+p10
+(dp11
+g4
+Vsql injection! haha
+p12
+sg6
+Vbug_report
+p13
+sg8
+VI found an actual error
+p14
+sba(imshc_lib
+Message
+p15
+(dp16
+g4
+Vjk love it
+p17
+sg6
+Vdesign
+p18
+sg8
+VYour Site SUCKS
+p19
+sba(imshc_lib
+Message
+p20
+(dp21
+g4
+VGeneral
+p22
+sg6
+Vgeneral
+p23
+sg8
+VAnother Feedback
+p24
+sba(imshc_lib
+Message
+p25
+(dp26
+g4
+VLol
+p27
+sg8
+VMy second feedback!
+p28
+sba(imshc_lib
+Message
+p29
+(dp30
+g4
+VAHH xss
+p31
+sg8
+VSomething weird here
+p32
+sba(imshc_lib
+Message
+p33
+(dp34
 g4
 VWoah there
-p10
-sg6
+p35
+sg8
 VAnother message
-p11
+p36
 sba(imshc_lib
 Message
-p12
-(dp13
+p37
+(dp38
 g4
 VSome content
-p14
-sg6
+p39
+sg8
 VMy first feedback!
-p15
+p40
 sba.

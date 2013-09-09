@@ -65,12 +65,19 @@ class Request:
 		self.time = time.time()
 		self.pretty_time = time.strftime("%a, %b. %d, %Y at %I:%M:%S %p")
 
+def matches(req, classes):
+	for cl in req.classes:
+		if cl in classes:
+			return True
+	return False
+
 #Right now, a message is just two strings - a title and content... in the future it might be more.
 class Message:
 	#Initialize the message
 	def __init__(self, params):
 		self.title = params['title']
 		self.content = params['feedback']
+		self.type = params['type']
 
 	def __str__(self):
 		return "message[title={0}, content={1}]".format(self.title, self.content)

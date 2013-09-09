@@ -7,7 +7,7 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-					{{ m.title }} <small>(this is a message)</small>
+					{{ m.title }} <small>({{ m.type }})</small>
 				</a>
 			</div>
 			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">

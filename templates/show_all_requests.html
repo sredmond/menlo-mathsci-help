@@ -13,7 +13,7 @@
 				<div class="accordion-inner">
 					{{ r.first_name }} {{ r.last_name }} is in {{ r.grade }}th grade (email is {{ r.email }}).<br />
 					He/she has requested help with {{ r.issue }} in the following classes:
-					<ul class="unstyled">
+					<ul>
 						{% for cl in r.pretty_classes %}
 						<li>
 							{{ cl }}

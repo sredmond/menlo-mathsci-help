@@ -66,7 +66,8 @@
 		</fieldset>
 		<fieldset>
 			<legend>What class(es) do you need help in?</legend>
-			<select name="science" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
+			<select id="science" name="science" form="submit" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Physics">
 					<option value="fresh_phys">Freshman Physics</option>
 					<option value="ap_phys_b">AP Physics B</option>
@@ -87,7 +88,7 @@
 					<option value="apes">AP Environmental Science</option>
 				</optgroup>
 			</select>
-			<select name="math" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<select id="math" name="math" form="submit" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Algebra 1">
 					<option value="inter_alg">Intermediate Algebra</option>
 				</optgroup>
@@ -116,7 +117,7 @@
 					<option value="at_math">AT Math</option>
 				</optgroup>
 			</select>
-			<select name="cs_as" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<select id="cs_as" name="cs_as" form="submit" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Computer Science">
 					<option value="intro_cs">Intro to Programming</option>
 					<option value="ap_cs">AP Computer Science</option>
@@ -136,7 +137,6 @@
 				</optgroup>
 			</select>
 		</fieldset>
-		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
 		<fieldset>
 			<legend>Specific Challenge</legend>
 			<p>We categorize assistance into three categories - finishing homework, studying for a test, and working on a long-term project</p>

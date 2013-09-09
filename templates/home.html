@@ -3,14 +3,14 @@
 <div class="container">
     <div class="alert alert-block alert-info">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4>Important!</h4>
-        <p>I've worked very hard on this website, but there will inevitably be a few bugs (errors), since it is still in beta. If you encounter any, please please please let me know. You can do this by going to the "Feedback" tab and writing me a note. I'll try to fix errors as quickly as possible. Even if there isn't an error, feel free to write a note saying how much you love math and science. Or how much you hate it. I don't judge.</p>
+        <h4>Hello!</h4>
+        <p>I've worked very hard on this website, but there will inevitably be a few bugs (errors), since it is still in beta. If you encounter any, <strong>please</strong> let me know. You can do this by going to the "Feedback" tab and writing me a note. I'll try to fix errors as quickly as possible. Even if there isn't an error, feel free to write a note saying how much you love math and science. Or how much you hate it. I don't judge.</p>
         <p>-Sam R.</p>
     </div>
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
         <h1>Hello!</h1>
-        <p>Welcome to Menlo's Math and Science Help Center.</p>
+        <p>Welcome to Menlo's Math and Science Help Center. Read our overview or jump right in.</p>
         <p>I want to:</p>
         <div class="btn-group">
             <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span5">Learn &raquo;</a>
@@ -20,60 +20,105 @@
     <div class="row">
         <div class="span4">
             <h2>Overview</h2>
-            <p>This is how it gon work buddy boy: donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a data-target="#myModal" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+            <p>So you need help? You came to the right place. If you want to learn, submit a request via the 'Learn' tab. If you want to teach, enter information via the 'Teach' tab. We'll pair you with a tutor (?).</p>
+            <p><a data-target="#modal_overview" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
         </div>
         <div class="span4">
-          <h2>Our Philosophy</h2>
-          <p>We believe that... donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-      </div>
-      <div class="span4">
-          <h2>Advanced</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-      </div>
-  </div>
-  <hr>
-  <textarea rows=4 name="console" id="console" class="input-block-level" placeholder="This console is for debugging purposes" readonly>{{console}}</textarea>
-  <hr>
-  <footer>
-    <p>&copy; Sam Redmond, 2013</p>
-</footer>
-</div>
+            <h2>Our Philosophy</h2>
+            <p>We believe that the best learning happens in <strong>one-on-one</strong> tutoring environments. Our entire goal here is to match you with one specific tutor.
+                <p><a data-target="#modal_philosophy" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+            </div>
+            <div class="span4">
+                <h2>Advanced</h2>
+                <p>Since this website is still a work in progress, I need help finding bugs. To motivate you to explore the site, I've hidden a few easter eggs. Try to find them all.</p>
+                <p><a data-target="#modal_advanced" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+            </div>
+        </div>
+        <hr>
+        <textarea rows=4 name="console" id="console" class="input-block-level" placeholder="This console is for debugging purposes" readonly>{{console}}</textarea>
+        <hr>
+        <footer>
+            <p>&copy; Sam Redmond, 2013</p>
+        </footer>
+    </div>
 
-<!--Modals AAUGH THESE SHOULD BE LOADED REMOTELY :(-->
-<!--Overview-->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3 id="myModalLabel">Overview</h3>
-  </div>
-  <div class="modal-body">
-    <h4>Text in a modal</h4>
-    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
+    <!--Modals AAUGH THESE SHOULD BE LOADED REMOTELY :(-->
+    <!--Overview-->
+    <div id="modal_overview" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_overview_label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="modal_overview_label">Overview</h3>
+        </div>
+        <div class="modal-body">
+            <h4>Text in a modal</h4>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
 
-    <h4>Popover in a modal</h4>
-    <p>This <a href="#" role="button" class="btn popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
+            <h4>Popover in a modal</h4>
+            <p>This <a href="#" role="button" class="btn popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
 
-    <h4>Tooltips in a modal</h4>
-    <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.</p>
+            <h4>Tooltips in a modal</h4>
+            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.</p>
 
-    <hr>
+            <hr>
 
-    <h4>Overflowing text to show optional scrollbar</h4>
-    <p>We set a fixed <code>max-height</code> on the <code>.modal-body</code>. Watch it overflow with all this extra lorem ipsum text we've included.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-    <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-</div>
-<div class="modal-footer">
-  <button class="btn" data-dismiss="modal">Close</button>
-</div>
-</div>
-<!--End overview-->
+            <h4>Want to know what <em>really</em> happens when you hit the 'submit' button? <small>Intended for computer scientists</small></h4>
+            <p>When you have filled out a form and you hit 'submit', two things happen. First, your browser checks (using Javascript) to see that everything you have entered is valid data. Hopefully, you've been good and have been listening to the colored feedback (success, warning, or error) that pops up when you blur away from an input element. In case you have been bad, the browser will tell you to edit your input. Once the browser is happy, it sends your data to a server, which is currently hosted on heroku.com, but at some point may be on the menloschool domain. Server-side scripts are written in Python, so when the server recieves a form, it wraps the data in a Requests object that contains information you entered (like your name, the classes you need help in, etc.) as well as meta-information (Request objects have a unique ID, a timestamp that keeps track of when you submitted a request, and more). These requests objects are stored on the server using cPickle, a python module that for all intents and purposes writes data structures to text files. Requests are stored in Python's native list class, which you can think of like Java's ArrayList or Queue. At some point, requests will be stored in SQL databases, but today is <em>not that day!</em>. When the browser asks the server to show information about stored requests, the server unpickles our stored data and (through the power of Jinja2 templating!) returns HTML containing the guts of each request. If you're interested in more, either talk to me on the quad, or check out the GitHub page to see the code itself.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <!--End overview-->
+    <!--Philosophy-->
+    <div id="modal_philosophy" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_philosophy_label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="modal_philosophy_label">Philosophy</h3>
+        </div>
+        <div class="modal-body">
+            <p>Let' say you really want to have a group study session (before a big test, perhaps). Submit a request as usual, but be sure to tell us in the 'additional comments' section that multiple people need help.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <!--End philosophy-->
+    <!--Advanced-->
+    <div id="modal_advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_advanced" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="modal_advanced">Advanced</h3>
+        </div>
+        <div class="modal-body">
+            <p>Hint: There is an HTML page that can't be reached from this homepage. You need to enter the right URL to find it.</p>
+            <p>Another hint (I'm so nice): If you're really stuck, look through the GitHub page for clues.</p>
+            <h4>Known Bugs</h4>
+            <ul>
+                <li>
+                    On Heroku, timestamps are in UTC (that's +8 from PST!)
+                </li>
+                <li>
+                    Tooltips and popovers don't load (in modals for sure, but maybe in other environments)
+                </li>
+            </ul>
+            <h4>Potential Bugs</h4>
+            <ul>
+                <li>
+                    HTML Injection (for XSS attacks)
+                </li>
+                <li>
+                    Regex matching for form validation
+                </li>
+                <li>
+                    Python injection? Access to debugger?
+                </li>
+            </ul>
+            As always, if you find any bugs, <strong>please</strong> submit them to me via the 'Feedback' tab.
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <!--End advanced-->
 </div>
 {% endblock %}
