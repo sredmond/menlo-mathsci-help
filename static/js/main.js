@@ -1,5 +1,15 @@
 $(document).ready(function()
 {
+	//Enable tooltips on elements with rel="tooltip"  
+	$(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+
+    //Enable popovers on elements with rel="popover"
+    $(function () {
+        $("[rel='popover']").popover();
+    });
+
 	var entityMap = 
 	{
 		"&": "&amp;",

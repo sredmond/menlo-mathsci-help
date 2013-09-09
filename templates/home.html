@@ -3,7 +3,7 @@
 <div class="container">
     <div class="alert alert-block alert-info">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4>Hello!</h4>
+        <h4>Hi!</h4>
         <p>I've worked very hard on this website, but there will inevitably be a few bugs (errors), since it is still in beta. If you encounter any, <strong>please</strong> let me know. You can do this by going to the "Feedback" tab and writing me a note. I'll try to fix errors as quickly as possible. Even if there isn't an error, feel free to write a note saying how much you love math and science. Or how much you hate it. I don't judge.</p>
         <p>-Sam R.</p>
     </div>
@@ -54,10 +54,10 @@
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
 
             <h4>Popover in a modal</h4>
-            <p>This <a href="#" role="button" class="btn popover-test" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
+            <p>This <a href="#" role="button" class="btn" rel="popover" title="A Title" data-content="And here's some amazing content. It's very engaging. right?">button</a> should trigger a popover on click.</p>
 
             <h4>Tooltips in a modal</h4>
-            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> should have tooltips on hover.</p>
+            <p><a href="#" rel="tooltip" title="Words 1">This link</a> and <a href="#" rel="tooltip" title="Words 2">that link</a> should have tooltips on hover.</p>
 
             <hr>
 
@@ -99,6 +99,9 @@
                 </li>
                 <li>
                     Tooltips and popovers don't load (in modals for sure, but maybe in other environments)
+                </li>
+                <li>
+                    Radio button values can be edited (in Chrome or Firefox) and are still processed on the server.
                 </li>
             </ul>
             <h4>Potential Bugs</h4>
