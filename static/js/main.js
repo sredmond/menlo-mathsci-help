@@ -65,9 +65,75 @@ $(document).ready(function()
 		return patt.test(str);
 	}
 
-	$("#submit_button").click(function()
+	//Fully validate the form before sending information to the server
+	$("#submitLearner").submit(function()
 	{
-		//Do something here
+		//Kinda a ghetto way to inform people of what error they made. Add the error message to a string.
+		var errors = new Array();
+
+		//Get the values
+		var first_name_text = escapeHTML($("#first-name").val().trim());
+		var last_name_text = escapeHTML($("#last-name").val().trim());
+		var grade_text = escapeHTML($("#grade").val().trim());
+		var email_text = escapeHTML($("#email").val().trim());
+
+		var num_classes_selected = $("option:selected").length;
+
+		var title_text = escapeHTML($("#title").val().trim());
+		var challenge_text = escapeHTML($("#challenge").val().trim());
+
+		//Specialized error messages
+		if (isEmpty(first_name_text))
+		{
+			errors.push("Your first name cannot be empty.");
+		}
+		else if (!isAlpha(first_name_text))
+		{
+			errors.push("Your first name must be composed of letters only.");
+		}
+		if (isEmpty(last_name_text))
+		{
+			errors.push("Your last name cannot be empty.");
+		}
+		else if (!isAlpha(last_name_text))
+		{
+			errors.push("Your last name must be composed of letters only.");
+		}
+		if (!(grade_text==='9' || grade_text==='10' || grade_text==='11' || grade_text==='12'))
+		{
+			errors.push("Your grade must be either '9', '10', '11', or '12'.");	
+		}
+		if (isEmpty(email_text))
+		{
+			errors.push("Your email cannot be empty");
+		}
+		else if (!isEmail(email_text))
+		{
+			errors.push("Your email must contain only letters, numbers, or any of '._+-'.");
+		}
+		if (num_classes_selected == 0)
+		{
+			errors.push("You must select at least one class.");
+		}
+		if (isEmpty(title_text))
+		{
+			errors.push("You must title the request.");
+		}
+		if (isEmpty(challenge_text))
+		{
+			errors.push("You must describe your specific challenge.");
+		}
+
+		//The moment of truth - are there errors?
+		if (errors.length > 0)
+		{
+			var error_str = errors.join(" ");
+			$("#alert").removeClass("hidden");
+			$("#alert-text").html(error_str);
+			$("html, body").animate({ scrollTop: 0 }, "slow"); //Scroll to the top
+			return false;
+		}
+		//Otherwise, the form is sent to the server.
 	});
 
 //Some clientside form validation
@@ -83,7 +149,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (isAlpha(text))
 		{
 			mark_success(group, label);
@@ -110,7 +176,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (isAlpha(text))
 		{
 			mark_success(group, label);
@@ -137,7 +203,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (text === '9' || text === '10' || text === '11' || text === '12')
 		{
 			mark_success(group, label);
@@ -160,7 +226,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (isEmail(text))
 		{
 			mark_success(group, label);
@@ -187,7 +253,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (isEmpty(text))
 		{
 			mark_error(group, label, "You should title your requests!");			
@@ -209,7 +275,7 @@ $(document).ready(function()
 		label.removeClass(); 
 		label.addClass('label');
 
-		var text = escapeHTML($(this).val());
+		var text = escapeHTML($(this).val().trim());
 		if (isEmpty(text))
 		{
 			mark_error(group, label, "Please tell us about your challenge!");			
@@ -225,7 +291,7 @@ $(document).ready(function()
 	$("input[name=issue]").change(function()
 	{
 		var myRadio = $(this);
-		var checkedVal = myRadio.filter(':checked').val();
+		var checkedVal = myRadio.filter(':checked').val().trim();
 		var textarea = $("#elaboration");
 		var a = textarea.attr('disabled');
 		if (checkedVal == "other") //We've selected the 'other' option

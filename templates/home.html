@@ -100,10 +100,10 @@
                     On Heroku, timestamps are in UTC (that's +8 from PST!)
                 </li>
                 <li>
-                    Tooltips and popovers don't load (in modals for sure, but maybe in other environments)
+                    The server doesn't do any hardcore input validation. As such, values (such as those on radio buttons) can be edited (in Chrome or Firefox) and are still processed normally on the server.
                 </li>
                 <li>
-                    Radio button values can be edited (in Chrome or Firefox) and are still processed on the server.
+                    Refreshing a submitted form submits the form multiple times.
                 </li>
             </ul>
             <h4>Potential Bugs</h4>
@@ -116,6 +116,9 @@
                 </li>
                 <li>
                     Python injection? Access to debugger?
+                </li>
+                <li>
+                    SQL injection? Once I'm on SQL that is. :P
                 </li>
             </ul>
             As always, if you find any bugs, <strong>please</strong> submit them to me via the 'Feedback' tab.

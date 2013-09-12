@@ -1,25 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-<!--This is the page I'm actively editing... the teach.html page will come next-->
 <div class="container">
 	<h2>The Learning Zone</h2>
 	<p>
-		We're glad you want to learn! You came to the right place.
+		We're glad you want to learn! You came to the right place. Here at the Math &amp; Science Help Center, our goal is to help <em>you</em> with math and/or science. Simply tell us what you need help with by filling out the form below. When you submit your information, your request will be added to a queue. Everyone (especially tutors) can see all requests at any time, and hopefully you'll soon be contacted by a tutor who is ready to help you. If you're not contacted within, say, a week, email me at sam.redmond@menloschool.org and I'll personally help you out.
 	</p>
 	<p>
-		The Menlo Math and Science Help Center lives up to its name: our goal is to help YOU with math. Or science.
+		In order for this interaction to be effective, you need to really describe the problem you're having. The more information you tell us, the better we can prepare to help you. Really go for it on the optional questions. 
 	</p>
-	<p> 
-		All you have to do is tell us what you need help with. Fill out the form below, hit the submit button, and in no time you'll be matched to a tutor.
-	</p>
-	<p>
-		The more information you give us about your problem, the more we can help you. So get going! Don't just skip the optional questions. Your experience WILL be better if you tell us more
-	</p>
-	<div class="alert">
+	<div id="alert" class="alert alert-error alert-block hidden">
   		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<strong>Warning!</strong> There are errors in your form. Please correct these before submitting.
+  		<span id="alert-text"></span>
 	</div>
-	<form id="submit" action="submitLearner" method="post" class="form-horizontal">
+	<form id="submitLearner" action="submitLearner" method="post" class="form-horizontal">
 		<fieldset>
 			<legend>About You</legend>
 			<div id="first-name-control-group" class="control-group">
@@ -69,7 +62,7 @@
 		<fieldset>
 			<legend>What class(es) do you need help in?</legend>
 			<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
-			<select id="science" name="science" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<select id="science" name="science" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Physics">
 					<option value="fresh_phys">Freshman Physics</option>
 					<option value="ap_phys_b">AP Physics B</option>
@@ -90,7 +83,7 @@
 					<option value="apes">AP Environmental Science</option>
 				</optgroup>
 			</select>
-			<select id="math" name="math" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<select id="math" name="math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Algebra 1">
 					<option value="inter_alg">Intermediate Algebra</option>
 				</optgroup>
@@ -119,7 +112,7 @@
 					<option value="at_math">AT Math</option>
 				</optgroup>
 			</select>
-			<select id="cs_as" name="cs_as" form="submit" multiple="multiple" size="21" class="pull-left span4">
+			<select id="cs_as" name="cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 				<optgroup label="Computer Science">
 					<option value="intro_cs">Intro to Programming</option>
 					<option value="ap_cs">AP Computer Science</option>
@@ -175,7 +168,7 @@
 			<div id="challenge-control-group" class="control-group">
             	<label class="control-label" for="challenge">Specific Challenge</label>
             	<div class="controls">
-					<textarea rows=4 form="submit" name="challenge" id="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
+					<textarea rows=4 form="submitLearner" name="challenge" id="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
 					<span id="challenge-label" class="label"></span>
             	</div>
         	</div>
@@ -185,19 +178,19 @@
 			<div class="control-group">
             	<label class="control-label" for="requests">Requests</label>  
             	<div class="controls">  
-					<textarea rows=4 form="submit" name="requests" placeholder="Do you have any requests for particular tutors?" class="span4"></textarea>
+					<textarea rows=4 form="submitLearner" name="requests" placeholder="Do you have any requests for particular tutors?" class="span4"></textarea>
             	</div>  
         	</div>  
         	<div class="control-group">  
             	<label class="control-label" for="availability">Availability</label>  
             	<div class="controls">  
-					<textarea rows=4 form="submit" name="availability" placeholder="When are you available? Include your free period, if applicable." class="span4"></textarea>
+					<textarea rows=4 form="submitLearner" name="availability" placeholder="When are you available? Include your free period, if applicable." class="span4"></textarea>
             	</div>  
         	</div>  
         	<div class="control-group">  
             	<label class="control-label" for="additional_comments">Comments</label>  
             	<div class="controls">  
-					<textarea rows=4 form="submit" name="additional_comments" placeholder="Is there anything else you would to add?" class="span4"></textarea>
+					<textarea rows=4 form="submitLearner" name="additional_comments" placeholder="Is there anything else you would to add?" class="span4"></textarea>
             	</div>  
         	</div>
 		</fieldset>
