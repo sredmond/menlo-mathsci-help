@@ -66,12 +66,22 @@ def submitLearner():
 	all_classes.extend(other_classes)
 	params['all_classes'] = filter(lambda x: x in classesMap, all_classes) #Will only store values that are in our class list
 	
+	
 	#Type of issue
 	issue = info['issue']
 	params['issue'] = issue
+	if issue in issue_map:
+		params['issue_str'] = issue_map[issue]
+	elif issue == 'other':
+		params['issue_str'] = info['elaboration'].lower()
+	else:
+		params['issue_str'] = 'Invalid option'
 
-	#Other info
+	#Mandatory info
+	params['title'] = info['title']
 	params['challenge'] = info['challenge']
+	
+	#Optional info
 	params['requests'] = info['requests']
 	params['availability'] = info['availability']
 	params['additional'] = info['additional_comments']

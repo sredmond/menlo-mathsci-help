@@ -12,9 +12,9 @@
         <h1>Hello!</h1>
         <p>Welcome to Menlo's Math and Science Help Center. Read our overview or jump right in.</p>
         <p>I want to:</p>
-        <div class="btn-group">
-            <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span5">Learn &raquo;</a>
-            <a href= {{ url_for('teach') }} class="btn btn-success btn-large span5">Teach &raquo;</a>
+        <div class="row-fluid">
+            <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span6">Learn &raquo;</a>
+            <a href= {{ url_for('teach') }} class="btn btn-success btn-large span6">Teach &raquo;</a>
         </div>
     </div>
     <div class="row">
@@ -50,6 +50,8 @@
             <h3 id="modal_overview_label">Overview</h3>
         </div>
         <div class="modal-body">
+            <h4>How to use this resource</h4>
+            <p>Something</p>
             <h4>Text in a modal</h4>
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
 

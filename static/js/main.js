@@ -70,7 +70,7 @@ $(document).ready(function()
 		//Do something here
 	});
 
-//Some form validation
+//Some clientside form validation
 	$("#first-name").blur(function()
 	{
 		var group = $("#first-name-control-group");
@@ -172,6 +172,51 @@ $(document).ready(function()
 		else
 		{
 			mark_error(group, label, "I don't think that is a valid email address. Please change it.");
+		}
+	});
+
+	$("#title").blur(function()
+	{
+		var group = $("#title-control-group");
+		//Reset classes to default
+		group.removeClass();
+		group.addClass('control-group');
+
+		var label = $("#title-label");
+		//Reset classes to default
+		label.removeClass(); 
+		label.addClass('label');
+
+		var text = escapeHTML($(this).val());
+		if (isEmpty(text))
+		{
+			mark_error(group, label, "You should title your requests!");			
+		}
+		else
+		{
+			mark_success(group, label);
+		}
+	});
+	$("#challenge").blur(function()
+	{
+		var group = $("#challenge-control-group");
+		//Reset classes to default
+		group.removeClass();
+		group.addClass('control-group');
+
+		var label = $("#challenge-label");
+		//Reset classes to default
+		label.removeClass(); 
+		label.addClass('label');
+
+		var text = escapeHTML($(this).val());
+		if (isEmpty(text))
+		{
+			mark_error(group, label, "Please tell us about your challenge!");			
+		}
+		else
+		{
+			mark_success(group, label);
 		}
 	});
 

@@ -6,13 +6,13 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-					Request <small>by {{ r.first_name }} {{ r.last_name }} on {{ r.pretty_time }}</small>
+					{{ r.title }} <small>by {{ r.first_name }} {{ r.last_name }} on {{ r.pretty_time }}</small>
 				</a>
 			</div>
 			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
 				<div class="accordion-inner">
 					{{ r.first_name }} {{ r.last_name }} is in {{ r.grade }}th grade (email is {{ r.email }}).<br />
-					He/she has requested help with {{ r.issue }} in the following classes:
+					He/she has requested help with {{ r.issue_str }} in the following class(es):
 					<ul>
 						{% for cl in r.pretty_classes %}
 						<li>
@@ -33,6 +33,8 @@
 				</div>
 			</div>
 		</div>
+		{% else %}
+		<p>No requests found.</p>
 		{% endfor %}
 	</div>
 </div>

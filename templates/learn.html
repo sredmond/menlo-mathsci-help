@@ -151,7 +151,7 @@
 			  Test
 			</label>
 			<label class="radio">
-			  <input type="radio" name="issue" id="project" value="project">
+			  <input type="radio" name="issue" id="proj" value="proj">
 			  Project
 			</label>
 			<label class="radio inline">
@@ -162,12 +162,26 @@
 		</fieldset>
 		<fieldset>
 			<legend>Additional Information</legend>
-			<div class="control-group">  
-            	<label class="control-label" for="challenge">Specific Challenge</label>  
-            	<div class="controls">  
-					<textarea rows=4 form="submit" name="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
-            	</div>  
-        	</div>  
+			<div id="title-control-group" class="control-group">
+				<label class="control-label" for="title">Title</label>
+				<div class="controls">
+					<div class="input-prepend">
+						<span class="add-on"><i class="icon-font"></i></span>
+						<input class="span2" id="title" name="title" type="text" placeholder="Title your request.">
+					</div>
+					<span id="title-label" class="label"></span>
+				</div>
+			</div>
+			<div id="challenge-control-group" class="control-group">
+            	<label class="control-label" for="challenge">Specific Challenge</label>
+            	<div class="controls">
+					<textarea rows=4 form="submit" name="challenge" id="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
+					<span id="challenge-label" class="label"></span>
+            	</div>
+        	</div>
+		</fieldset>
+		<fieldset>
+			<legend>Optional Information</legend>
 			<div class="control-group">
             	<label class="control-label" for="requests">Requests</label>  
             	<div class="controls">  
