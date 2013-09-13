@@ -1,49 +1,49 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
 	<div class="alert alert-block alert-info">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<h4>Hey there!</h4>
-		<p>Thanks for taking the time to give me some feedback. I read everything you write, and I really appreciate your contributions to the site. If you're submitting a bug report, be as specific as possible - if I can't recreate your error, I'm going to have a hard time fixing it. If you're submitting a general message, be as complimentary as possible - I always like reading compliments =D. 
-			<p>-Sam R.</p>
-		</div>
-		<h3>Feedback</h3>
-		<p>What should you include in a bug report? Specificity! If it's a visual (data display) error, tell me what device and browser you're using (Chrome for iPhone, Safari for iPad, Firefox for Mac, etc). If it's a server-side (data processing) error, be sure to include the exact inputs that caused the error. As always, please record the steps you took that led you to the bug.</p>
-		<form id="submit" action="submitMessage" class="form-horizontal" method="post">
-			<div class="control-group">
-				<label class="control-label" for="title">Title</label>
-				<div class="controls">
-					<input class="span2" id="title" name="title" type="text" placeholder="Title your message.">
-				</div>
-			</div>
-			<div class="control-group">  
-				<label class="control-label" for="feedback">Message</label>  
-				<div class="controls">  
-					<textarea rows=6 form="submit" name="feedback" placeholder="Enter your message." class="input-block-level"></textarea>
-				</div>
-			</div>
-			<div class="control-group">  
-				<label class="control-label" for="feedback_type">Feedback Type</label>  
-				<div class="controls">  
-					<label class="radio inline">
-						<input type="radio" name="feedback_type" id="bug_report" value="bug_report" checked="checked">
-						Bug Report
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="feedback_type" id="design" value="design">
-						Design Flaw
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="feedback_type" id="general" value="general">
-						General Feedback
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="feedback_type" id="other" value="other">
-						Other
-					</label>
-				</div>
-			</div>
-			<button type="submit" class="btn btn-primary pull-right" id="submit_button">Submit!</button>
-		</form>
+		<p>Thanks for taking the time to give me some feedback. I read everything you write, and I really appreciate your contributions to the site. If you're submitting a bug report, be as specific as possible - if I can't recreate your error, I'm going to have a hard time fixing it. If you're submitting a general message, be as complimentary as possible - I always like reading compliments =D.</p>
+		<p>-Sam R.</p>
 	</div>
-	{% endblock %}
+	<h3>Feedback</h3>
+	<p>What should you include in a bug report? Specificity! If it's a visual (data display) error, tell me what device and browser you're using (Chrome for iPhone, Safari for iPad, Firefox for Mac, etc). If it's a server-side (data processing) error, be sure to include the exact inputs that caused the error. As always, please record the steps you took that led you to the bug.</p>
+	<form id="submit" action="submitMessage" class="form-horizontal" method="post">
+		<div class="control-group">
+			<label class="control-label" for="title">Title</label>
+			<div class="controls">
+				<input class="span2" id="title" name="title" type="text" placeholder="Title your message.">
+			</div>
+		</div>
+		<div class="control-group">  
+			<label class="control-label" for="feedback">Message</label>  
+			<div class="controls">  
+				<textarea rows=6 form="submit" name="feedback" placeholder="Enter your message." class="input-block-level"></textarea>
+			</div>
+		</div>
+		<div class="control-group">  
+			<label class="control-label" for="feedback_type">Feedback Type</label>  
+			<div class="controls">  
+				<label class="radio inline">
+					<input type="radio" name="feedback_type" id="bug_report" value="bug_report" checked="checked">
+					Bug Report
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="feedback_type" id="design" value="design">
+					Design Flaw
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="feedback_type" id="general" value="general">
+					General Feedback
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="feedback_type" id="other" value="other">
+					Other
+				</label>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary pull-right" id="submit_button">Submit!</button>
+	</form>
+</div>
+{% endblock %}

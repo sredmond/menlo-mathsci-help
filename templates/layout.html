@@ -44,7 +44,16 @@
 
 </head>
 <body>
-
+  <!--Flash any messages-->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
   <!-- Begin header -->
   <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">

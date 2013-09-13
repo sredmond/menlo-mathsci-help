@@ -73,6 +73,24 @@ class Request:
 		self.time = time.mktime(current_time) #Could be used as an ID perhaps?
 		self.pretty_time = time.strftime("%a, %b. %d, %Y at %I:%M:%S %p", current_time)
 
+class Tutor:
+	def __init__(self, params):
+		#User info
+		self.first_name = params['first_name'].capitalize()
+		self.last_name = params['last_name'].capitalize()
+		self.grade = params['grade']
+		self.email = params['email']
+
+		#Classes
+		self.classes=params['all_classes']
+		self.pretty_classes=[classesMap[cl] for cl in self.classes]
+
+		#Time
+		current_time = time.localtime()
+		self.time = time.mktime(current_time) #Could be used as an ID perhaps?
+		self.pretty_time = time.strftime("%a, %b. %d, %Y at %I:%M:%S %p", current_time)
+
+
 def matches(req, classes):
 	for cl in req.classes:
 		if cl in classes:

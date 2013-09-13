@@ -1,17 +1,38 @@
 import os
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, flash
 import cPickle as cp
 from mshc_lib import *
 
 DEBUG=True #CHANGE THIS TO FALSE ON MAJOR RELEASES
 app = Flask(__name__)
+app.secret_key=os.urandom(24)
 pickle_path = os.path.join(os.getcwd(), 'requests/pickled_requests.txt')
 feedback_path = os.path.join(os.getcwd(), 'feedback/feedback.txt')
 
 #Load pages
 @app.route('/')
 def main():
-    return render_template('home.html')
+	return render_template('home.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or \
+                request.form['password'] != 'secret':
+            error = 'Invalid credentials'
+        else:
+            flash('You were successfully logged in')
+            return redirect(url_for('home'))
+    return render_template('login.html', error=error)
+
+#Note that this URL rule keeps 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+	if request.method == 'POST':
+		return render_template('home.html', console=request.form)
+	return render_template('signup.html')
+
 
 @app.route('/learn')
 def learn():
@@ -120,6 +141,7 @@ def submitTeacher():
 	all_classes.extend(other_classes)
 	params['all_classes'] = filter(lambda x: x in classesMap, all_classes) #Will only store values that are in our class list
 
+	t = Tutor(params)
 	read = open(pickle_path, 'rb')
 	current_requests = cp.load(read)
 	read.close()
@@ -129,7 +151,7 @@ def submitTeacher():
 		if matches(req, all_classes):
 			filtered_requests.append(req)
 
-	return render_template('show_all_requests.html', requests=filtered_requests)
+	return render_template('show_all_requests.html', requests=filtered_requests, tutor=t)
 
 @app.route('/submitMessage', methods=['POST'])
 def submitMessage():

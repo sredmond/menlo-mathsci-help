@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
 	<h2>The Learning Zone</h2>
 	<p>
 		We're glad you want to learn! You came to the right place. Here at the Math &amp; Science Help Center, our goal is to help <em>you</em> with math and/or science. Simply tell us what you need help with by filling out the form below. When you submit your information, your request will be added to a queue. Everyone (especially tutors) can see all requests at any time, and hopefully you'll soon be contacted by a tutor who is ready to help you. If you're not contacted within, say, a week, email me at sam.redmond@menloschool.org and I'll personally help you out.
@@ -17,7 +17,7 @@
 			<legend>About You</legend>
 			<div id="first-name-control-group" class="control-group">
 				<label class="control-label" for="first-name">
-					<a href="#" rel="tooltip" title="A first name must match the regular expression ^[a-zA-Z]+$">First Name</a>
+					First Name <a href="#" tabindex="-1" rel="tooltip" title="A first name must contain only letters (it match the regular expression '^[a-zA-Z]+$')"><i class="icon-info-sign"></i></a>
 				</label>
 				<div class="controls">
 					<div class="input-prepend">

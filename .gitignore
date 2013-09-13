@@ -38,3 +38,7 @@ nosetests.xml
 
 #Virtual Environment
 venv
+
+#Request and Feedback pickled arrays
+requests/*
+feedback/*
