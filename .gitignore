@@ -42,3 +42,10 @@ venv
 #Request and Feedback pickled arrays
 requests/*
 feedback/*
+
+#Ignore database storage
+db_*
+app.db
+
+#Ignore tmp
+tmp/*

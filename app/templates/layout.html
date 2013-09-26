@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--You found an easter egg!
+__      _____________.____   _________  ________      _____  ___________
+/  \    /  \_   _____/|    |  \_   ___ \ \_____  \    /     \ \_   _____/
+\   \/\/   /|    __)_ |    |  /    \  \/  /   |   \  /  \ /  \ |    __)_ 
+\        / |        \|    |__\     \____/    |    \/    Y    \|        \
+\__/\  / /_______  /|_______ \______  /\_______  /\____|__  /_______  /
+\/          \/         \/      \/         \/         \/        \/ 
+___________________   
+\__    ___/\_____  \  
+|    |    /   |   \ 
+|    |   /    |    \
+|____|   \_______  /
+\/ 
+______________ ______________
+\__    ___/   |   \_   _____/
+|    | /    ~    \    __)_ 
+|    | \    Y    /        \
+|____|  \___|_  /_______  /
+\/        \/ 
+_____    _________ ___ ___  _________  
+/     \  /   _____//   |   \ \_   ___ \ 
+/  \ /  \ \_____  \/    ~    \/    \  \/ 
+/    Y    \/        \    Y    /\     \____
+\____|__  /_______  /\___|_  /  \______  /
+\/        \/       \/          \/
+-->
+
+<meta charset="utf-8">
+{% if title %}
+<title>{{ title }} - MSHC</title>
+{% else %}
+<title>Menlo's Math and Science Help Center</title>
+{% endif %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="menlo, mshc, math, science, help">
+<meta name="description" content="">
+<meta name="author" content="Sam Redmond">
+
+<!-- Styles -->
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/extra_styles.css" rel="stylesheet">
+
+<!-- Touch and fav icons -->
+<link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+
+</head>
+<body>
+  <!--Flash any messages-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class="flashes">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  <!-- Begin header -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="/">Math&amp;Science Help Center</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Me<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="nav-header">View</li>
+                <li><a href="#">Learner View</a></li>
+                <li><a href="#">Tutor View</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Settings</li>
+                <li><a href="#">My information</a></li>
+                <li><a href="#">My classes</a></li>
+                <li><a href="#">My history</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form pull-right">
+            {% if g.user.is_authenticated() %}
+            <button type="submit" class="btn">Logout</button>
+            {% endif %}
+            <input class="span2" type="text" placeholder="Email" disabled>
+            <input class="span2" type="password" placeholder="Password" disabled>
+            <button type="submit" class="btn">Sign in</button>
+          </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- End header -->
+<!--Flash any messages-->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }} </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<!--End message flashing-->
+{% block content %}
+{% endblock %}
+<!-- Begin footer -->
+<div class="footer">
+  <div class="container">
+    <p class="muted">Designed and built lovingly by Sam Redmond</p>
+    <p class="muted">This project is structured on <a href="http://getbootstrap.com/2.3.2/" target="_blank">Twitter Bootstrap v2.3.2</a></p>
+    <p class="muted">Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a> (actually MIT license), documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+    <p class="muted"><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/sredmond/menlo-mathsci-help" target="_blank">Contribute</a></li>
+      <li class="muted">&middot;</li>
+      <li><a href="https://github.com/sredmond/menlo-mathsci-help/issues?state=open" target="_blank">Issues</a></li>
+      <li class="muted">&middot;</li>
+      <li><a href="https://github.com/sredmond/menlo-mathsci-help/releases" target="_blank">Changelog</a></li>
+    </ul>
+  </div>
+</div>
+<!-- End footer -->
+
+<!-- Scripts -->
+<!-- Placed at the end of the document so the pages load faster-->
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>
