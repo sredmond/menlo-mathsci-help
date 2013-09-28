@@ -11,11 +11,17 @@
 -------------------------------------------------- */
 
 .footer {
-  text-align: center;
-  padding: 30px 0 0 0;
-  margin-top: 70px;
+  
+  padding: 20px 0 0 0;
+  margin-top: -150px; /* negative value of footer height */
+  height: 190px;
+  position: relative;
+  clear:both;
+
   border-top: 1px solid #e5e5e5;
   background-color: #f5f5f5;
+  text-align: center;
+  
 }
 .footer p {
   margin-bottom: 0;
@@ -30,4 +36,14 @@
 }
 .footer-links li:first-child {
   padding-left: 0;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html, body {
+  height: 100%;
+}
+
+#main {
+  min-height: 100%;
 }
