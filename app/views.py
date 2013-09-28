@@ -3,6 +3,7 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from app import app, db, lm
 from forms import LoginForm
 from models import User, ROLE_USER, ROLE_ADMIN
+from bcrypt import hashpw, gensalt
 
 @lm.user_loader
 def load_user(id):
@@ -34,38 +35,89 @@ def index():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if g.user is not None and g.user.is_authenticated():
+    if g.user is not None and g.user.is_authenticated(): #The user is already logged in
         return redirect(url_for('index'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        session['remember_me'] = form.remember_me.data
-    return render_template('login.html', 
-        title = 'Sign In',
-        form = form)
 
-def after_login(resp):
-    if resp.email is None or resp.email == "":
-        flash('Invalid login. Please try again.')
-        return redirect(url_for('login'))
-    user = User.query.filter_by(email = resp.email).first()
-    if user is None:
-        nickname = resp.nickname
-        if nickname is None or nickname == "":
-            nickname = resp.email.split('@')[0]
-        user = User(nickname = nickname, email = resp.email, role = ROLE_USER)
-        db.session.add(user)
-        db.session.commit()
-    remember_me = False
-    if 'remember_me' in session:
-        remember_me = session['remember_me']
-        session.pop('remember_me', None)
-    login_user(user, remember = remember_me)
-    return redirect(request.args.get('next') or url_for('index'))
+    #They hit the submit button
+    if request.method == 'POST':
+        info = request.form
+        email = info['email'] #Could try to smartly add an @menloschool.org
+        password = info['password']
+        remember_me = False
+        if 'remember-me' in info:
+            remember_me = info['remember-me'].data
+        
+        if email is None or email == "":
+            flash('Invalid email. Please try again.')
+            return redirect(url_for('login'))
+        
+        if password is None or password == "":
+            flash('Invalid password. Please try again.')
+            return redirect(url_for('login'))
+        
+        user = User.query.filter_by(email = email).first()
+        if user is None:
+            flash('The email "{0}" is not stored in our databases.'.format(email))
+            return redirect(url_for('login'))
+
+        if not user.verify_password(password):
+            flash('Incorrect password. Please try again.')
+            return redirect(url_for('login'))
+        
+        login_user(user, remember = remember_me)
+        return redirect(request.args.get('next') or url_for('index'))
+    return render_template('login.html', 
+        title = 'Sign In')
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if g.user is not None and g.user.is_authenticated(): #The user is already logged in
+        return redirect(url_for('index'))
+
+    #They hit the submit button
+    if request.method == 'POST':
+        #Do craptons of verification here.
+        info = request.form
+        email = info['email'] + "@menloschool.org"
+        hashed_password = hashpw(info['password'], gensalt())
+
+        first_name = info['first_name']
+        last_name = info['last_name']
+        grade = int(info['grade'])
+
+        user = User(email=email, 
+            hashed_password=hashed_password, 
+            first_name=first_name,
+            last_name=last_name,
+            grade=grade,
+            role=ROLE_ADMIN)
+
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return redirect(url_for('index'))
+    return render_template('signup.html')
+
+@app.route('/user/<int:user_id>')
+def show_user(user_id):
+    user = User.query.filter_by(id = user_id).first()
+    return render_template('view_user.html',
+        user=user)
+
+#Handle Error Pages
+@app.errorhandler(404) #404=Page Not Found
+def internal_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500) #500 = Internal server error
+def internal_error(error):
+    db.session.rollback() #Rollback the database in case a database error triggered the 500
+    return render_template('500.html'), 500
 
 # #Load pages
 # @app.route('/')

@@ -48,29 +48,19 @@ _____    _________ ___ ___  _________
 
 </head>
 <body>
-  <!--Flash any messages-->
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <ul class="flashes">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% endwith %}
-  <!-- Begin header -->
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="/">Math&amp;Science Help Center</a>
+        <a class="brand" href={{ url_for('index') }}>Math&amp;Science Help Center</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Me<b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -85,33 +75,37 @@ _____    _________ ___ ___  _________
               </ul>
             </li>
           </ul>
-          <form class="navbar-form pull-right">
-            {% if g.user.is_authenticated() %}
-            <button type="submit" class="btn">Logout</button>
-            {% endif %}
-            <input class="span2" type="text" placeholder="Email" disabled>
-            <input class="span2" type="password" placeholder="Password" disabled>
-            <button type="submit" class="btn">Sign in</button>
+          {% if g.user.is_authenticated() %}
+            <a href={{ url_for('logout') }} type="submit" class="btn pull-right">Logout</a>
+          {% else %}  
+          <form class="navbar-form pull-right" action='login' method='post' name='login'>
+            <input class="span2" type="text" name="email" placeholder="Email">
+            <input class="span2" type="password" name="password" placeholder="Password">
+            <button type="submit" class="btn">Log In</button>
           </form>
+          {% endif %}
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
 </div> 
 <!-- End header -->
-<!--Flash any messages-->
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
+<div class="container-fluid"> <!-- All content lives in a fluid container -->
+  <!--Flash any messages-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
   {% for message in messages %}
-  <li>{{ message }} </li>
+  <div class="alert warning fade in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Info:</strong> {{ message }}
+  </div>
   {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
-<!--End message flashing-->
-{% block content %}
-{% endblock %}
+  {% endif %}
+  {% endwith %}
+  <!--End message flashing-->
+  {% block content %}
+  {% endblock %}
+</div>
 <!-- Begin footer -->
 <div class="footer">
   <div class="container">

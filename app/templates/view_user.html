@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if user %}
+	You're looking at a user.
+	User ID: {{ user.id }}
+	Hashed PW: {{ user.hashed_password }}
+	User Email: {{ user.email }}
+	User Name: {{ user.first_name }} {{ user.last_name }}
+	User Role: {{ user.role }}
+	User Requests:
+	{% for req in user.requests %}
+		{{ req }}
+	{% endfor %}
+{% else %}
+That user doesn't exist!
+{% endif %}
+{% endblock %}

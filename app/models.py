@@ -1,4 +1,5 @@
 from app import db
+import bcrypt
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
