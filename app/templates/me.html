@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ g.user.first_name}}'s Headquarters</h1>
+<div class="well">
+	<p>Hey {{ g.user.first_name }}, thanks for stopping by! If you need to learn</p>
+</div>
+<ul>
+	<li><a href={{ url_for('learn') }}>Learn</a></li>
+	<li><a href={{ url_for('teach') }}>Teach</a></li>
+</ul>
+{% endblock %}

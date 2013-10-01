@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 @media (min-width: 980px) {
   body {
-    padding-top: 60px;
+    padding-top: 40px;
     padding-bottom: 42px;
   }
 }
@@ -14,7 +14,7 @@
   
   padding: 20px 0 0 0;
   margin-top: -150px; /* negative value of footer height */
-  height: 190px;
+  height: 150px;
   position: relative;
   clear:both;
 
@@ -44,6 +44,11 @@ html, body {
   height: 100%;
 }
 
-#main {
+#wrap {
   min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
 }

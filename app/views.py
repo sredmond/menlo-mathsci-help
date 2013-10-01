@@ -15,28 +15,20 @@ def before_request():
     
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
-    user = g.user
-    posts = [
-        { 
-            'author': { 'nickname': 'John' }, 
-            'body': 'Beautiful day in Portland!' 
-        },
-        { 
-            'author': { 'nickname': 'Susan' }, 
-            'body': 'The Avengers movie was so cool!' 
-        }
-    ]
     return render_template('index.html',
-        title = 'Home',
-        user = user,
-        posts = posts)
+        title = 'Home')
+
+@app.route('/me')
+@login_required
+def me():
+    return render_template('me.html',
+        title="Me")
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if g.user is not None and g.user.is_authenticated(): #The user is already logged in
-        return redirect(url_for('index'))
+        return redirect(url_for('me'))
 
     #They hit the submit button
     if request.method == 'POST':
@@ -65,7 +57,7 @@ def login():
             return redirect(url_for('login'))
         
         login_user(user, remember = remember_me)
-        return redirect(request.args.get('next') or url_for('index'))
+        return redirect(request.args.get('next') or url_for('me'))
     return render_template('login.html', 
         title = 'Sign In')
 
@@ -77,7 +69,7 @@ def logout():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if g.user is not None and g.user.is_authenticated(): #The user is already logged in
-        return redirect(url_for('index'))
+        return redirect(url_for('me'))
 
     #They hit the submit button
     if request.method == 'POST':
@@ -99,15 +91,26 @@ def signup():
 
         db.session.add(user)
         db.session.commit()
+        flash("Logged in successfully.")
         login_user(user)
-        return redirect(url_for('index'))
+        return redirect(url_for('me'))
     return render_template('signup.html')
 
 @app.route('/user/<int:user_id>')
-def show_user(user_id):
+def show_user(user_id=None):
     user = User.query.filter_by(id = user_id).first()
     return render_template('view_user.html',
         user=user)
+
+@app.route('/learn')
+def learn():
+    return render_template('learn.html',
+        title="Learn")
+
+@app.route('/teach')
+def teach():
+    return render_template('teach.html',
+        title="Teach")
 
 #Handle Error Pages
 @app.errorhandler(404) #404=Page Not Found

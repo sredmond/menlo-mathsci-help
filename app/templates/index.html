@@ -1,7 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}	
-<h1>Hey, {{ user.first_name }}!</h1>
-{% for post in posts %}
-<div><p>{{post.author.email}} says: <b>{{post.body}}</b></p></div>
-{% endfor %}
+<div class="alert alert-block alert-info">
+    <h4>Hi!</h4>
+    <p>I've worked very hard on this website, but there will inevitably be a few bugs (errors), since it is still in beta. If you encounter any, <strong>please</strong> let me know. You can do this by going to the "Feedback" tab and writing me a note. I'll try to fix errors as quickly as possible. Even if there isn't an error, feel free to write a note saying how much you love math and science. Or how much you hate it. I don't judge.</p>
+    <p>-Sam R.</p>
+</div>
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit">
+    <h1>Hello!</h1>
+    <p>Welcome to Menlo's Math and Science Help Center. Read our overview or jump right in.</p>
+    <p>I want to:</p>
+    <div class="row-fluid">
+        <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span6">Learn &raquo;</a>
+        <a href= {{ url_for('teach') }} class="btn btn-success btn-large span6">Teach &raquo;</a>
+    </div>
+</div>
+<div class="row">
+    <div class="span4">
+        <h2>Overview</h2>
+        <p>So you need help? You came to the right place. If you want to learn, submit a request via the 'Learn' tab. If you want to teach, enter information via the 'Teach' tab. We'll pair you with a tutor (?).</p>
+        <p><a data-target="#modal_overview" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+    </div>
+    <div class="span4">
+        <h2>Philosophy</h2>
+        <p>We believe that the best learning happens in <strong>one-on-one</strong> tutoring environments. Our entire goal here is to match you with one specific tutor.
+            <p><a data-target="#modal_philosophy" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+            <h2>Advanced</h2>
+            <p>Since this website is still a work in progress, I need help finding bugs. To motivate you to explore the site, I've hidden a few easter eggs. Try to find them all.</p>
+            <p><a data-target="#modal_advanced" role="button" class="btn" data-toggle="modal">View details &raquo;</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}
