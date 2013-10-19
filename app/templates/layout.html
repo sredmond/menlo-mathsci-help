@@ -65,7 +65,7 @@ ______________ ______________
               <ul class="dropdown-menu">
                 <li class="nav-header">Go To</li>
                 <li><a href={{ url_for('me') }}>My Headquarters</a></li>
-                <li><a href={{ "/user/{0}".format(g.user.id) }}>My Profile</a></li>
+                <li><a href={{ 'user', user_id=g.user.id }}>My Profile</a></li>
                 <li class="divider"></li>
                 <li class="nav-header">Options</li>
                 <li><a href={{ url_for('learn') }}>Learn Now</a></li>

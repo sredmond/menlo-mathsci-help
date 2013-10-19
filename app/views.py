@@ -103,17 +103,25 @@ def show_user(user_id=None):
         user=user)
 
 @app.route('/learn')
+@login_required
 def learn():
     return render_template('learn.html',
         title="Learn")
 
 @app.route('/teach')
+@login_required
 def teach():
     return render_template('teach.html',
         title="Teach")
 
+@app.route('/admin')
+@login_required
+def admin():
+    return render_template('admin.html',
+        title="Administrator")
+
 #Handle Error Pages
-@app.errorhandler(404) #404=Page Not Found
+@app.errorhandler(404) #404 = Page Not Found
 def internal_error(error):
     return render_template('404.html'), 404
 

@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 @media (min-width: 980px) {
   body {
-    padding-top: 40px;
+    padding-top: 60px;
     padding-bottom: 42px;
   }
 }
@@ -10,11 +10,23 @@
 /* Footer
 -------------------------------------------------- */
 
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:125px; /* this needs to be bigger than footer height*/
+}
+
 .footer {
-  
   padding: 20px 0 0 0;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
+  margin-top: -125px; /* negative value of footer height */
+  height: 125px;
   position: relative;
   clear:both;
 
@@ -37,18 +49,5 @@
 .footer-links li:first-child {
   padding-left: 0;
 }
-
-/* Sticky footer styles
--------------------------------------------------- */
-html, body {
-  height: 100%;
-}
-
-#wrap {
-  min-height: 100%;
-}
-
-#main {
-  overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
-}
+/* Custom stuff
+-----------------------------------------*/
