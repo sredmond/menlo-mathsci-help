@@ -65,8 +65,8 @@ $(document).ready(function()
 		return patt.test(str);
 	}
 
-	//Fully validate the learn form before sending information to the server
-	$("#submitLearner").submit(function()
+	//Verify a request before it is sent to the server
+	$("#submitRequest").submit(function()
 	{
 		//Kinda a ghetto way to inform people of what error they made. Add the error message to a string.
 		var errors = new Array();
@@ -134,6 +134,11 @@ $(document).ready(function()
 			return false;
 		}
 		//Otherwise, the form is sent to the server.
+	});
+
+	$(".btn-group button").click(function () 
+	{
+	    $("#subj_title").val($(this).text());
 	});
 	
 	//Fully validate a teach form submission

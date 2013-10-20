@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm
 from forms import LoginForm
-from models import User, Subject, ROLE_USER, ROLE_ADMIN 
+from models import User, Request, Subject, ROLE_USER, ROLE_ADMIN 
 from bcrypt import hashpw, gensalt
 
 @lm.user_loader
@@ -114,23 +114,51 @@ def show_user(user_id=None):
     return render_template('view_user.html',
         user=user)
 
-@app.route('/learn')
+@app.route('/learn', methods=['GET', 'POST'])
 @login_required
 def learn():
+    if request.method=='POST': #Looking at the page
+        info = request.form
+
+        subj = Subject.query.filter_by(title=info['subj_title']).first()
+        if subj != None:
+            req = Request(title=info['title'],
+                issue=info['issue'],
+                body=info['challenge'],
+                extra_requests=info['requests'],
+                availability=info['availability'],
+                additional=info['additional_comments'])
+
+            subj.add_request(req)
+            g.user.make_request(req)
+
+            db.session.add(req)
+            db.session.commit()
+            flash("Successfully requested help")
+            return redirect(url_for('me'))
+        flash("That request wasn't for a sensible subject")
+        return redirect(url_for('learn'))
     return render_template('learn.html',
-        title="Learn")
+            title="Learn",
+            user=g.user)
 
 @app.route('/teach')
 @login_required
 def teach():
+    requests = filter(lambda r: r.subject in g.user.tutoring, Request.query.all())
     return render_template('teach.html',
-        title="Teach")
+        title="Teach",
+        user=g.user,
+        requests=requests)
 
 @app.route('/admin')
 @login_required
 def admin():
     return render_template('admin.html',
-        title="Administrator")
+        title="Administrator",
+        users=User.query.all(),
+        requests=Request.query.all(),
+        subjects=Subject.query.all())
 
 @app.route('/termsconditions')
 def terms_and_conditions():

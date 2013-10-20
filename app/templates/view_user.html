@@ -1,26 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
 {% if user %}
-<div class="page-header">
-	<h1>{{ user.first_name }} {{ user.last_name }} <small>({{ user.email }})</h1>
-</div>
-	Hashed PW: {{ user.hashed_password }}
-	User Role: {{ user.role }}
-	User Requests:
-	{% for req in user.requests %}
-		{{ req }}
+	<div class="page-header">
+		<h1>{{ user.first_name }} {{ user.last_name }} <small>({{ user.email }})</small></h1>
+	</div>
+	<h2>Basic Information</h2>
+		{{ user.first_name }} is in {{ user.grade }}th grade. He/she has a role of {{ user.role }} on this website.
+	<h2>Classes</h2>
+	<h4>Tutoring</h4>
+	{{ user.first_name}} has generously offered to tutor {{ user.tutoring|length }} math and science class(es)! He/she can tutor:<br />
+	{% for subj in user.tutoring %}
+		{% if loop.first %}
+			{{ subj.title }}
+		{% else %}
+			, {{ subj.title }}
+		{% endif %}
+	{% else %}
+		{{ user.first_name }} {{ user.last_name }} is not tutoring any subjects.
 	{% endfor %}
-	Classes the user can teach:
-	{% for cl in user.tutoring %}
-		{{ cl }}
+	<h4>Learning</h4>
+	{{ user.first_name}} is taking {{ user.learning|length }} math and science class(es) this year! He/she is taking:<br />
+	{% for subj in user.learning %}
+		{% if loop.first %}
+			{{ subj.title }}
+		{% else %}
+			, {{ subj.title }}
+		{% endif %}
+	{% else %}
+		{{ user.first_name }} is not learning any subjects. This shouldn't ever happen.
 	{% endfor %}
-	Classes the user is taking:
-	{% for cl in user.learning %}
-		{{ cl }}
-	{% endfor %}
+	<h2>Requests</h2>
+	{{ user.first_name}} has made {{ user.requests|length }} request(s) for help. For privacy reasons, we don't divulge each request individually.
 {% else %}
-<div class="alert alert-error">
-	<strong>Error!</strong> The specified user does not exist in the database.
-</div>
+	<div class="alert alert-error">
+		<strong>Error!</strong> The specified user does not exist in the database.
+	</div>
 {% endif %}
 {% endblock %}

@@ -1,4 +1,151 @@
 {% extends "layout.html" %}
 {% block content %}	
-Stuff for admin goes here
+<h2>Users</h2>
+<div class="accordion" id="accordionusers">
+	{% for u in users %}
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionusers" href={{ "#collapseuser%s" % loop.index }}>
+				{{ u.id }}: {{ u.first_name }} {{ u.last_name }} <small> ({{ u.email }})</small>
+			</a>
+		</div>
+		<div id={{ "collapseuser%s" % loop.index }} class="accordion-body collapse">
+			<div class="accordion-inner">
+				<dl class="dl-horizontal">
+					<dt>Grade</dt>
+					<dd>{{ u.grade }}</dd>
+					<dt>Role</dt>
+					<dd>{{ u.role }}</dd>
+					<dt>Tutoring</dt>
+					<dd>
+						{% for subj in u.tutoring %}
+							{% if loop.first %}
+								{{ subj.title }}
+							{% else %}
+								, {{ subj.title }}
+							{% endif %}
+						{% else %}
+							Not tutoring any subjects.
+						{% endfor %}
+					</dd>
+					<dt>Learning</dt>
+					<dd>
+						{% for subj in u.learning %}
+							{% if loop.first %}
+								{{ subj.title }}
+							{% else %}
+								, {{ subj.title }}
+							{% endif %}
+						{% else %}
+							Not learning any subjects. This shouldn't ever happen.
+						{% endfor %}
+					</dd>
+					<dt>Requests</dt>
+					<dd>
+						{% for r in u.requests %}
+							{% if loop.first %}
+								{{ r.title }} ({{ r.subject.title }})
+							{% else %}
+								, {{ r.title }} ({{ r.subject.title }})
+							{% endif %}
+						{% else %}
+							No requests available.
+						{% endfor %}
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	{% else %}
+	<p>There are no users in the database.</p>
+	{% endfor %}
+</div>
+<h2>Requests</h2>
+<div class="accordion" id="accordionrequests">
+	{% for r in requests %}
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrequests" href={{ "#collapserequest%s" % loop.index }}>
+				{{ r.id }}: {{ r.title }} for {{ r.subject.title }} <small>(by {{ r.author.first_name }} {{ r.author.last_name }})</small>
+			</a>
+		</div>
+		<div id={{ "collapserequest%s" % loop.index }} class="accordion-body collapse">
+			<div class="accordion-inner">
+				<dl class="dl-horizontal">
+					<dt>Issue</dt>
+					<dd>{{ r.issue }}</dd>
+					<dt>Body</dt>
+					<dd>{{ r.body }}</dd>
+					<dt>Extra Requests</dt>
+					<dd>{{ r.extra_requests }}</dd>
+					<dt>Availability</dt>
+					<dd>{{ r.availability }}</dd>
+					<dt>Additional Comments</dt>
+					<dd>{{ r.additional }}</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	{% else %}
+	<p>There are no requests in the database.</p>
+	{% endfor %}
+</div>
+<h2>Subjects</h2>
+<div class="accordion" id="accordionsubjects">
+	{% for s in subjects %}
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsubjects" href={{ "#collapsesubject%s" % loop.index }}>
+				{{ s.id }}: {{ s.title }}</small>
+			</a>
+		</div>
+		<div id={{ "collapsesubject%s" % loop.index }} class="accordion-body collapse">
+			<div class="accordion-inner">
+				<dl class="dl-horizontal">
+					<dt>Abbreviated Name</dt>
+					<dd>{{ s.name }}</dd>
+					<dt>Tutors</dt>
+					<dd>
+						{% for u in s.tutors %}
+							{% if loop.first %}
+								{{ u.first_name }} {{ u.last_name }}
+							{% else %}
+								, {{ u.first_name }} {{ u.last_name }}
+							{% endif %}
+						{% else %}
+							No tutors available.
+						{% endfor %}
+					</dd>
+					<dt>Learners</dt>
+					<dd>
+						{% for u in s.learners %}
+							{% if loop.first %}
+								{{ u.first_name }} {{ u.last_name }}
+							{% else %}
+								, {{ u.first_name }} {{ u.last_name }}
+							{% endif %}
+						{% else %}
+							No students available.
+						{% endfor %}
+					</dd>
+					<dt>Requests</dt>
+					<dd>
+						{% for r in s.requests %}
+							{% if loop.first %}
+								{{ r.title }} ({{ r.subject.title }})
+							{% else %}
+								, {{ r.title }} ({{ r.subject.title }})
+							{% endif %}
+						{% else %}
+							No requests available.
+						{% endfor %}
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	{% else %}
+	<p>There are no subjects in the database. This shouldn't happen. Make sure that add_subjects.py has been run.</p>
+	{% endfor %}
+</div>
 {% endblock %}

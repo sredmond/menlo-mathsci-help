@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2>The Learning Zone</h2>
+<h2>Learning</h2>
 <p>
-	We're glad you want to learn! You came to the right place. Here at the Math &amp; Science Help Center, our goal is to help <em>you</em> with math and/or science. Simply tell us what you need help with by filling out the form below. When you submit your information, your request will be added to a queue. Everyone (especially tutors) can see all requests at any time, and hopefully you'll soon be contacted by a tutor who is ready to help you. If you're not contacted within, say, a week, email me at sam.redmond@menloschool.org and I'll personally help you out.
+	If you need help, you're in the right place. We're glad you want to learn! You came to the right place. Here at the Math &amp; Science Help Center, our goal is to help <em>you</em> with math and/or science. Simply tell us what you need help with by filling out the form below. When you submit your information, your request will be added to a queue. Everyone (especially tutors) can see all requests at any time, and hopefully you'll soon be contacted by a tutor who is ready to help you. If you're not contacted within, say, a week, email me at sam.redmond@menloschool.org and I'll personally help you out.
 </p>
 <p>
 	In order for this interaction to be effective, you need to really describe the problem you're having. The more information you tell us, the better we can prepare to help you. Really go for it on the optional questions. 
@@ -11,129 +11,19 @@
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<span id="alert-text"></span>
 </div>
-<form id="submitLearner" action="submitLearner" method="post" class="form-horizontal">
+<form id="learn" action="learn" method="post" class="form-horizontal">
 	<fieldset>
-		<legend>About You</legend>
-		<div id="first-name-control-group" class="control-group">
-			<label class="control-label" for="first-name">
-				First Name <a href="#" tabindex="-1" rel="tooltip" title="A first name must contain only letters (it match the regular expression '^[a-zA-Z]+$')"><i class="icon-info-sign"></i></a>
-			</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<span class="add-on"><i class="icon-font"></i></span>
-					<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
-				</div>
-				<span id="first-name-label" class="label"></span>
-			</div>
+		<legend>Which class do you need help in? <small>Select One</small></legend>
+		<div class="btn-group" data-toggle="buttons-radio">
+		{% for cl in user.learning %}
+  			<button type="button" class="btn">{{ cl.title }}</button>
+  		{% endfor %}
 		</div>
-		<div id="last-name-control-group" class="control-group">
-			<label class="control-label" for="last-name">Last Name</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<span class="add-on"><i class="icon-font"></i></span>
-					<input class="span2" id="last-name" name="last_name" type="text" placeholder="Last Name">
-				</div>
-				<span id="last-name-label" class="label"></span>	
-			</div>
-		</div>
-		<div id="grade-control-group" class="control-group">
-			<label class="control-label" for="grade">Grade</label>
-			<div class="controls">
-				<div class="input-prepend">
-					<span class="add-on">#</span>
-					<input class="span2" id="grade" name="grade" type="number" min=9 max=12 placeholder="Between 9 and 12">
-				</div>
-				<span id="grade-label" class="label"></span>
-			</div>
-		</div>
-		<div id="email-control-group" class="control-group">
-			<label class="control-label" for="email">Email Address</label>
-			<div class="controls">
-				<div class="input-prepend input-append">
-					<span class="add-on"><i class="icon-envelope"></i></span>
-					<input class="span2" id="email" name="email" type="text" placeholder="example">
-					<span class="add-on">@menloschool.org</span>
-				</div>
-				<span id="email-label" class="label"></span>
-			</div>
-		</div>
+		<input class="hidden" id="subj_title" name="subj_title">
 	</fieldset>
 	<fieldset>
-		<legend>What class(es) do you need help in?</legend>
-		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
-		<select id="science" name="science" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
-			<optgroup label="Physics">
-				<option value="fresh_phys">Freshman Physics</option>
-				<option value="ap_phys_b">AP Physics B</option>
-				<option value="ap_phys_c">AP Physics C</option>
-			</optgroup>
-			<optgroup label="Chemistry">
-				<option value="conc_chem">Conceptual Chemistry</option>
-				<option value="accel_chem">Accelerated Chemistry</option>
-				<option value="ap_chem">AP Chemistry</option>
-				<option value="o_chem">Organic Chemistry</option>
-			</optgroup>
-			<optgroup label="Biology">
-				<option value="bio">Biology</option>
-				<option value="at_bio">AT Biology</option>
-				<option value="anat_and_phys">Anatomy and Physiology</option>
-			</optgroup>
-			<optgroup label="Other">
-				<option value="apes">AP Environmental Science</option>
-			</optgroup>
-		</select>
-		<select id="math" name="math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
-			<optgroup label="Algebra 1">
-				<option value="inter_alg">Intermediate Algebra</option>
-			</optgroup>
-			<optgroup label="Geometry">
-				<option value="geo">Analytic Geometry</option>
-				<option value="geoh">Analytic Geometry (H)</option>
-			</optgroup>
-			<optgroup label="Algebra 2">
-				<option value="a2">Algebra 2</option>
-				<option value="a2h">Algebra 2 (H)</option>
-			</optgroup>
-			<optgroup label="Precalculus">
-				<option value="fst">Functions, Statistics, and Trigonometry</option>
-				<option value="pop">Principles of Precalculus</option>
-				<option value="apc">Analytical Precalculus</option>
-				<option value="pch">Precalculus (H)</option>
-			</optgroup>
-			<optgroup label="Calculus">
-				<option value="calc">Intro to Calculus</option>
-				<option value="calc_ab">AP Calculus AB</option>
-				<option value="calc_bc">AP Calculus BC</option>
-			</optgroup>
-			<optgroup label="Other">
-				<option value="stats">Statistics</option>
-				<option value="ap_stats">AP Statistics</option>
-				<option value="at_math">AT Math</option>
-			</optgroup>
-		</select>
-		<select id="cs_as" name="cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
-			<optgroup label="Computer Science">
-				<option value="intro_cs">Intro to Programming</option>
-				<option value="ap_cs">AP Computer Science</option>
-				<option value="at_cs">AT Computer Science</option>
-			</optgroup>
-			<optgroup label="Applied Science">
-				<option value="asr">ASR (H)</option>
-				<option value="biotech">Biotechnology/Science Research</option>
-				<option value="robo">Electronics/Robotics</option>
-			</optgroup>
-			<optgroup label="Engineering">
-				<option value="eng1">Fundamentals of Engineering</option>
-				<option value="eng2">Entrepreneurship Engineering</option>
-			</optgroup>
-			<optgroup label="Other">
-				<option value="tool_safety">Design Thinking and Tool Safety (IS)</option>
-			</optgroup>
-		</select>
-	</fieldset>
-	<fieldset>
-		<legend>Specific Challenge</legend>
-		<p>We categorize assistance into three categories - finishing homework, studying for a test, and working on a long-term project</p>
+		<legend>Specific Challenge <small>Select One</small></legend>
+		<p>In general, we categorize assistance into three categories - homework help, studying for a test, and working on a long-term project.</p>
     	<label class="radio">
 		  <input type="radio" name="issue" id="hw" value="hw" checked="checked">
 		  Homework
@@ -167,7 +57,7 @@
 		<div id="challenge-control-group" class="control-group">
         	<label class="control-label" for="challenge">Specific Challenge</label>
         	<div class="controls">
-				<textarea rows=4 form="submitLearner" name="challenge" id="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
+				<textarea rows=4 form="learn" name="challenge" id="challenge" placeholder="Describe the particular challenge you're stuggling with. The clearer, the better." class="span4"></textarea>
 				<span id="challenge-label" class="label"></span>
         	</div>
     	</div>
@@ -177,19 +67,19 @@
 		<div class="control-group">
         	<label class="control-label" for="requests">Requests</label>  
         	<div class="controls">  
-				<textarea rows=4 form="submitLearner" name="requests" placeholder="Do you have any requests for particular tutors?" class="span4"></textarea>
+				<textarea rows=4 form="learn" name="requests" placeholder="Do you have any requests for particular tutors?" class="span4"></textarea>
         	</div>  
     	</div>  
     	<div class="control-group">  
         	<label class="control-label" for="availability">Availability</label>  
         	<div class="controls">  
-				<textarea rows=4 form="submitLearner" name="availability" placeholder="When are you available? Include your free period, if applicable." class="span4"></textarea>
+				<textarea rows=4 form="learn" name="availability" placeholder="When are you available? Include your free period, if applicable." class="span4"></textarea>
         	</div>  
     	</div>  
     	<div class="control-group">  
         	<label class="control-label" for="additional_comments">Comments</label>  
         	<div class="controls">  
-				<textarea rows=4 form="submitLearner" name="additional_comments" placeholder="Is there anything else you would to add?" class="span4"></textarea>
+				<textarea rows=4 form="learn" name="additional_comments" placeholder="Is there anything else you would to add?" class="span4"></textarea>
         	</div>  
     	</div>
 	</fieldset>

@@ -43,6 +43,10 @@ class User(db.Model):
         secondary = learnersSubjects, 
         backref = db.backref('learners'))
 
+    #Make a request
+    def make_request(self, request):
+        self.requests.append(request)
+
     #Add classes to tutor
     def tutor_subject(self, subject):
         if not self.is_tutoring(subject):
@@ -92,7 +96,10 @@ class User(db.Model):
 
 class Request(db.Model):
     id = db.Column(db.Integer, primary_key = True)
+
+
     #A form of meta data
+    title = db.Column(db.String(100))
     issue = db.Column(db.String(64)) #Again, arbitrary - this field holds "homework" or "project" or "test" or something else
     
     #Content
@@ -103,10 +110,10 @@ class Request(db.Model):
 
     #Other
     timestamp = db.Column(db.DateTime)
+
     #References
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'))
-    
 
     def __repr__(self):
         return '<Request %r>' % (self.body)
@@ -118,7 +125,11 @@ class Subject(db.Model):
 
 
     #List of requests about this subject
-    requests = db.relationship('Request', backref = 'subject', lazy = 'dynamic')
+    requests = db.relationship('Request', backref = 'subject')
+
+    def add_request(self, request):
+        self.requests.append(request)
+
 
     def __repr__(self):
         return '<Subject %r>' % (self.title)
