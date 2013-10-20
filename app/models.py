@@ -40,7 +40,7 @@ class User(db.Model):
 
     #I can ask for <user>.learning and <subject>.learners
     learning = db.relationship('Subject', 
-        secondary = tutorsSubjects, 
+        secondary = learnersSubjects, 
         backref = db.backref('learners'))
 
     #Add classes to tutor

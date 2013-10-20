@@ -88,7 +88,7 @@
 	<fieldset>
 		<legend>Math/Science Classes <em>You Are Currently Taking</em></legend>
 		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
-		<select id="science" name="science" multiple="multiple" size="21" class="pull-left span4">
+		<select id="tutor_science" name="tutor_science" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Physics">
 				<option value="fresh_phys">Freshman Physics</option>
 				<option value="ap_phys_b">AP Physics B</option>
@@ -109,7 +109,7 @@
 				<option value="apes">AP Environmental Science</option>
 			</optgroup>
 		</select>
-		<select id="math" name="math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
+		<select id="tutor_math" name="tutor_math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Algebra 1">
 				<option value="inter_alg">Intermediate Algebra</option>
 			</optgroup>
@@ -138,7 +138,7 @@
 				<option value="at_math">AT Math</option>
 			</optgroup>
 		</select>
-		<select id="cs_as" name="cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
+		<select id="tutor_cs_as" name="tutor_cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Computer Science">
 				<option value="intro_cs">Intro to Programming</option>
 				<option value="ap_cs">AP Computer Science</option>
@@ -161,7 +161,7 @@
 	<fieldset>
 		<legend>Math/Science Classes <em>You Could Tutor</em></legend>
 		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
-		<select id="science" name="science" multiple="multiple" size="21" class="pull-left span4">
+		<select id="learn_science" name="learn_science" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Physics">
 				<option value="fresh_phys">Freshman Physics</option>
 				<option value="ap_phys_b">AP Physics B</option>
@@ -182,7 +182,7 @@
 				<option value="apes">AP Environmental Science</option>
 			</optgroup>
 		</select>
-		<select id="math" name="math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
+		<select id="learn_math" name="learn_math" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Algebra 1">
 				<option value="inter_alg">Intermediate Algebra</option>
 			</optgroup>
@@ -211,7 +211,7 @@
 				<option value="at_math">AT Math</option>
 			</optgroup>
 		</select>
-		<select id="cs_as" name="cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
+		<select id="learn_cs_as" name="learn_cs_as" form="submitLearner" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Computer Science">
 				<option value="intro_cs">Intro to Programming</option>
 				<option value="ap_cs">AP Computer Science</option>
@@ -231,7 +231,7 @@
 			</optgroup>
 		</select>
 	</fieldset>
-	<o><small>By clicking sign up, you agree to our Terms and Conditions [link here]</small></p>
+	<o><small>By clicking sign up, you agree to our <a href={{ url_for('terms_and_conditions') }}>Terms and Conditions<a></small></p>
 	<button type="submit" class="btn btn-primary" id="submit_button">Sign Up!</button>
 </form>
 {% endblock %}

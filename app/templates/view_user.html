@@ -10,6 +10,14 @@
 	{% for req in user.requests %}
 		{{ req }}
 	{% endfor %}
+	Classes the user can teach:
+	{% for cl in user.tutoring %}
+		{{ cl }}
+	{% endfor %}
+	Classes the user is taking:
+	{% for cl in user.learning %}
+		{{ cl }}
+	{% endfor %}
 {% else %}
 <div class="alert alert-error">
 	<strong>Error!</strong> The specified user does not exist in the database.

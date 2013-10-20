@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm
 from forms import LoginForm
-from models import User, ROLE_USER, ROLE_ADMIN
+from models import User, Subject, ROLE_USER, ROLE_ADMIN 
 from bcrypt import hashpw, gensalt
 
 @lm.user_loader
@@ -73,7 +73,7 @@ def signup():
 
     #They hit the submit button
     if request.method == 'POST':
-        #Do craptons of verification here.
+        #Do verification here.
         info = request.form
         email = info['email'] + "@menloschool.org"
         hashed_password = hashpw(info['password'], gensalt())
@@ -89,7 +89,17 @@ def signup():
             grade=grade,
             role=ROLE_ADMIN)
 
+        tutoring_classes = info.getlist('tutor_science') + info.getlist('tutor_math') + info.getlist('tutor_cs_as')
+        for cl in tutoring_classes:
+            subj = Subject.query.filter_by(name=cl).first()
+            if subj != None:
+                user.tutor_subject(subj)
 
+        learning_classes = info.getlist('learn_science') + info.getlist('learn_math') + info.getlist('learn_cs_as')
+        for cl in learning_classes:
+            subj = Subject.query.filter_by(name=cl).first()
+            if subj != None:
+                user.learn_subject(subj)
 
         db.session.add(user)
         db.session.commit()
@@ -121,6 +131,11 @@ def teach():
 def admin():
     return render_template('admin.html',
         title="Administrator")
+
+@app.route('/termsconditions')
+def terms_and_conditions():
+    return render_template('termsconditions.html',
+        title="Terms and Conditions")
 
 #Handle Error Pages
 @app.errorhandler(404) #404 = Page Not Found

@@ -123,7 +123,7 @@ ______________ ______________
                 <ul class="dropdown-menu">
                   <li class="nav-header">Go To</li>
                   <li><a href={{ url_for('me') }}>My Headquarters</a></li>
-                  <li><a href={{ url_for('user', user_id=g.user.id) }}>My Profile</a></li>
+                  <li><a href={{ url_for('show_user', user_id=g.user.id) }}>My Profile</a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Options</li>
                   <li><a href={{ url_for('learn') }}>Learn Now</a></li>
@@ -148,20 +148,20 @@ ______________ ______________
     </div>
     <!-- End header -->
 
-    <!--Flash any messages-->
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert warning fade in">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Info:</strong> {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <!--End message flashing-->
-    
     <div class="container-fluid">
+      <!--Flash any messages-->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert warning fade in">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Info:</strong> {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <!--End message flashing-->
+    
       {% block content %}
       {% endblock %}
     </div>
