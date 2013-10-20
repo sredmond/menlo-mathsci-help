@@ -1,24 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
 <!--HAHA! This is a hidden page, in that there is no way to get to this page from the homepage. It's my form of weak, weak 'security' (security in quotes because this shouldn't pass for secure by any definition) since no one should in theory randomly stumble on this page. More of an 'out-of-the-way' page. In the future, I might make this page need a password to  be seen, or only be seen by certain users, but for now, I'm just putting the messages in this side html site.-->
-<div class="container-fluid">
-	<div class="accordion" id="accordion">
-		{% for m in messages %}
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-					{{ m.title }} <small>({{ m.type }})</small>
-				</a>
-			</div>
-			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
-				<div class="accordion-inner">
-					{{ m.content }}
-				</div>
+<div class="accordion" id="accordion">
+	{% for m in messages %}
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
+				{{ m.title }} <small>({{ m.type }})</small>
+			</a>
+		</div>
+		<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
+			<div class="accordion-inner">
+				{{ m.content }}
 			</div>
 		</div>
-		{% else %}
-		No messages found.
-		{% endfor %}
 	</div>
+	{% else %}
+	No messages found.
+	{% endfor %}
 </div>
 {% endblock %}

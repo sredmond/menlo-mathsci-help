@@ -1,64 +1,62 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container-fluid">
-	<div class="accordion" id="accordion">
-		{% for r in requests %}
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-					{{ r.title if r.title is defined else "Default" }} <small>by {{ r.first_name }} {{ r.last_name }} on {{ r.pretty_time }}</small>
-				</a>
-			</div>
-			<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
-				<div class="accordion-inner">
-					{{ r.first_name }} {{ r.last_name }} is in {{ r.grade }}th grade (email is {{ r.email }}).<br />
-					He/she has requested help with {{ r.issue_str }} in the following class(es):
-					<ul>
-						{% for cl in r.pretty_classes %}
-						<li>
-							{{ cl }}
-						</li>
-						{% endfor %}
-					</ul>
-					<dl class="dl-horizontal">
-						<dt>More information</dt>
-						<dd>{{ r.challenge }}</dd>
-						<dt>Requests</dt>
-						<dd>{{ r.requests }}</dd>
-						<dt>Availability</dt>
-						<dd>{{ r.availability }}</dd>
-						<dt>Additional Comments</dt>
-						<dd>{{ r.additional }}</dd>
-					</dl>
-					{% if tutor is defined %}
-					<div class="text-center">
-						<h4>Want to help {{ r.first_name }} {{ r.last_name }}? Initiate contact by sending an email!</h4>
-						<p>We provide a template email for you.</p>
-						<p><a data-target={{ "#modal%s" % loop.index }} role="button" class="btn btn-info" data-toggle="modal">View details &raquo;</a></p>
-						<div id={{ "modal%s" % loop.index }} class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby={{ "modal_label%s" % loop.index }} aria-hidden="true">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h3 id={{ "modal_label%s" % loop.index }}>Email for {{ r.first_name }} {{ r.last_name }}</h3>
-							</div>
-							<div class="modal-body">
-								<p>Send this email to: {{ r.email }}</p>
-								<hr>
-								<p class="text-left">Hello {{ r.first_name }} {{ r.last_name }},</p>
-								<p class="text-left">My name is {{ tutor.first_name }} {{ tutor.last_name }} from the Math and Science Help Center. I saw that you need help in one of your math/science classes. I can help you! Let's settle on a place and time to meet.</p>
-								<p class="text-right">Please let me know, {{ tutor.first_name }} {{ tutor.last_name }}</p>
-							</div>
-							<div class="modal-footer">
-								<button class="btn" data-dismiss="modal">Close</button>
-							</div>
+<div class="accordion" id="accordion">
+	{% for r in requests %}
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
+				{{ r.title if r.title is defined else "Default" }} <small>by {{ r.first_name }} {{ r.last_name }} on {{ r.pretty_time }}</small>
+			</a>
+		</div>
+		<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
+			<div class="accordion-inner">
+				{{ r.first_name }} {{ r.last_name }} is in {{ r.grade }}th grade (email is {{ r.email }}).<br />
+				He/she has requested help with {{ r.issue_str }} in the following class(es):
+				<ul>
+					{% for cl in r.pretty_classes %}
+					<li>
+						{{ cl }}
+					</li>
+					{% endfor %}
+				</ul>
+				<dl class="dl-horizontal">
+					<dt>More information</dt>
+					<dd>{{ r.challenge }}</dd>
+					<dt>Requests</dt>
+					<dd>{{ r.requests }}</dd>
+					<dt>Availability</dt>
+					<dd>{{ r.availability }}</dd>
+					<dt>Additional Comments</dt>
+					<dd>{{ r.additional }}</dd>
+				</dl>
+				{% if tutor is defined %}
+				<div class="text-center">
+					<h4>Want to help {{ r.first_name }} {{ r.last_name }}? Initiate contact by sending an email!</h4>
+					<p>We provide a template email for you.</p>
+					<p><a data-target={{ "#modal%s" % loop.index }} role="button" class="btn btn-info" data-toggle="modal">View details &raquo;</a></p>
+					<div id={{ "modal%s" % loop.index }} class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby={{ "modal_label%s" % loop.index }} aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 id={{ "modal_label%s" % loop.index }}>Email for {{ r.first_name }} {{ r.last_name }}</h3>
+						</div>
+						<div class="modal-body">
+							<p>Send this email to: {{ r.email }}</p>
+							<hr>
+							<p class="text-left">Hello {{ r.first_name }} {{ r.last_name }},</p>
+							<p class="text-left">My name is {{ tutor.first_name }} {{ tutor.last_name }} from the Math and Science Help Center. I saw that you need help in one of your math/science classes. I can help you! Let's settle on a place and time to meet.</p>
+							<p class="text-right">Please let me know, {{ tutor.first_name }} {{ tutor.last_name }}</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal">Close</button>
 						</div>
 					</div>
-					{% endif %}
 				</div>
+				{% endif %}
 			</div>
 		</div>
-		{% else %}
-		<p>No requests found.</p>
-		{% endfor %}
 	</div>
+	{% else %}
+	<p>No requests found.</p>
+	{% endfor %}
 </div>
 {% endblock %}	

@@ -9,7 +9,7 @@
   \__/\__/  |________/|_______|\________/\_________/\____|____/_________/
 ___________________   
 \__    ___/\_____  \  
-  |    |    /   |   \ 
+  |    |    /   |   \  
   |    |   /    |    \
   |____|   \_________/
 ______________ ______________
@@ -22,7 +22,64 @@ ______________ ______________
  /  \ /  \ \_____   \/    ~    \/    \  \/ 
 /    Y    \/         \    Y    /\     \____
 \____|____/\_________/\___|___/  \________/
--->
+
+ _____________________
+|  _________________  |
+| |              /  | |
+| |       /\    /   | |
+| |  /\  /  \  /    | |
+| | /  \/    \/     | |
+| |/             SR | |
+| |_________________| |
+|  __ __ __ __ __ __  |
+| |__|__|__|__|__|__| |
+| |__|__|__|__|__|__| |
+| |__|__|__|__|__|__| |
+| |__|__|__|__|__|__| |
+| |__|__|__|__|__|__| |
+| |__|__|__|__|__|__| |
+|  ___ ___ ___   ___  |
+| | 7 | 8 | 9 | | + | |
+| |___|___|___| |___| |
+| | 4 | 5 | 6 | | - | |
+| |___|___|___| |___| |
+| | 1 | 2 | 3 | | x | |
+| |___|___|___| |___| |
+| | . | 0 | = | | / | |
+| |___|___|___| |___| |
+|_____________________|
+
+
+                               __              []
+                               ||              []
+                               ||              []
+                               ||              []
+                            __ ||              []
+                            || ||              []
+                          .-||-||-.            []  /\
+                         _\_______/_===========[]=(-o)
+                          )\_____/(            []  \/
+                         /     ||  \           []
+                        /      ||   \          []
+                       /       ||    \         []
+                      /~~~~~~~~~~~~~~~\        []
+                     /         ::      \       []
+                    (          ::       )      []
+                     `-----------------'       []
+                             )                 []
+                           (   )               []
+                             )( . (            []
+                          .) @@)   )           []
+                       ` ) @@(@@)@             []
+                         (@@(@@)@              []
+                          @(@.@)@@             []
+                        ` (@{__}@)`            []
+                            :__;               []
+        ___                  {}+               []
+       ( = )             .---'`---.            []
+        | |_ jgs        /          \   ________[]____
+    ____| |_|==========(____________)_/______________\
+  -->
 
 <meta charset="utf-8">
 {% if title %}
@@ -44,54 +101,53 @@ ______________ ______________
 
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="brand" href={{ url_for('index') }}>Math&amp;Science Help Center</a>
-        <div class="nav-collapse collapse">
-          {% if g.user.is_authenticated() %}
-          <ul class="nav">
-            <li><a href="/">Home</a></li>
-            <li><a href={{ url_for('learn') }}>Learn</a></li>
-            <li><a href={{ url_for('teach') }}>Teach</a></li>
-            <li class="dropdown">
-              <a href={{ url_for('teach') }} class="dropdown-toggle" data-toggle="dropdown">Me<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="nav-header">Go To</li>
-                <li><a href={{ url_for('me') }}>My Headquarters</a></li>
-                <li><a href={{ 'user', user_id=g.user.id }}>My Profile</a></li>
-                <li class="divider"></li>
-                <li class="nav-header">Options</li>
-                <li><a href={{ url_for('learn') }}>Learn Now</a></li>
-                <li><a href={{ url_for('teach') }}>Teach Now</a></li>
-              </ul>
-            </li>
-          </ul>
-          <a href={{ url_for('logout') }} type="submit" class="btn pull-right">Logout</a>
-          {% else %} 
-          <ul class="nav">
-            <li><a href="/">Home</a></li>
-          </ul>
-          <form class="navbar-form pull-right" action='login' method='post' name='login'>
-            <input class="span2" type="text" name="email" placeholder="Email">
-            <input class="span2" type="password" name="password" placeholder="Password">
-            <button type="submit" class="btn">Log In</button>
-          </form>
-          {% endif %}
-        </div><!--/.nav-collapse -->
+  <div id="wrap">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href={{ url_for('index') }}>Math&amp;Science Help Center</a>
+          <div class="nav-collapse collapse">
+            {% if g.user.is_authenticated() %}
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href={{ url_for('learn') }}>Learn</a></li>
+              <li><a href={{ url_for('teach') }}>Teach</a></li>
+              <li class="dropdown">
+                <a href={{ url_for('teach') }} class="dropdown-toggle" data-toggle="dropdown">Me<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="nav-header">Go To</li>
+                  <li><a href={{ url_for('me') }}>My Headquarters</a></li>
+                  <li><a href={{ url_for('user', user_id=g.user.id) }}>My Profile</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Options</li>
+                  <li><a href={{ url_for('learn') }}>Learn Now</a></li>
+                  <li><a href={{ url_for('teach') }}>Teach Now</a></li>
+                </ul>
+              </li>
+            </ul>
+            <a href={{ url_for('logout') }} type="submit" class="btn pull-right">Logout</a>
+            {% else %} 
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action='login' method='post' name='login'>
+              <input class="span2" type="text" name="email" placeholder="Email">
+              <input class="span2" type="password" name="password" placeholder="Password">
+              <button type="submit" class="btn">Log In</button>
+            </form>
+            {% endif %}
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
-  </div>
-</div> 
-<!-- End header -->
-<div id="wrap">
-  <div id="main" class="container-fluid clear-top"> <!-- All content lives in a fluid container -->
+    <!-- End header -->
+
     <!--Flash any messages-->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -104,32 +160,35 @@ ______________ ______________
     {% endif %}
     {% endwith %}
     <!--End message flashing-->
-    {% block content %}
-    {% endblock %}
+    
+    <div class="container-fluid">
+      {% block content %}
+      {% endblock %}
+    </div>
   </div>
-</div>
-<!-- Begin footer -->
-<footer class="footer">
-  <div class="container">
-    <p class="muted">Designed and built by Sam Redmond</p>
-    <p class="muted">This project is structured on <a href="http://getbootstrap.com/2.3.2/" target="_blank">Twitter Bootstrap v2.3.2</a></p>
-    <p class="muted">Code licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
-    <p class="muted"><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-    <ul class="footer-links">
-      <li><a href="https://github.com/sredmond/menlo-mathsci-help" target="_blank">Contribute</a></li>
-      <li class="muted">&middot;</li>
-      <li><a href="https://github.com/sredmond/menlo-mathsci-help/issues?state=open" target="_blank">Issues</a></li>
-      <li class="muted">&middot;</li>
-      <li><a href="https://github.com/sredmond/menlo-mathsci-help/releases" target="_blank">Changelog</a></li>
-    </ul>
-  </div>
-</footer>
-<!-- End footer -->
 
-<!-- Scripts -->
-<!-- Placed at the end of the document so the pages load faster-->
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-<script src="/static/js/main.js"></script>
+  <!-- Begin footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="muted">Designed and built by Sam Redmond</p>
+      <p class="muted">This project is structured on <a href="http://getbootstrap.com/2.3.2/" target="_blank">Twitter Bootstrap v2.3.2</a></p>
+      <p class="muted">Code licensed under <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+      <p class="muted"><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/sredmond/menlo-mathsci-help" target="_blank">Contribute</a></li>
+        <li class="muted">&middot;</li>
+        <li><a href="https://github.com/sredmond/menlo-mathsci-help/issues?state=open" target="_blank">Issues</a></li>
+        <li class="muted">&middot;</li>
+        <li><a href="https://github.com/sredmond/menlo-mathsci-help/releases" target="_blank">Changelog</a></li>
+      </ul>
+    </div>
+  </footer>
+  <!-- End footer -->
+
+  <!-- Scripts -->
+  <!-- Placed at the end of the document so the pages load faster-->
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/main.js"></script>
 </body>
 </html>

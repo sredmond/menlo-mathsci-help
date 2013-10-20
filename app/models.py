@@ -3,13 +3,14 @@ import bcrypt
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
-#Relationship between users and subjects
-tutorsForSubjects = db.Table('tutorsForSubjects',
+#Tutors are in the 'left' column, subjects are in the 'right'
+tutorsSubjects = db.Table('tutorsSubjects',
     db.Column('tutor_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('subject_id', db.Integer, db.ForeignKey('subject.id'))
 )
 
-learnersForSubjects = db.Table('learnersForSubjects',
+#Learners are in the 'left' column, subjects are in the 'right'
+learnersSubjects = db.Table('learnerSubjects',
     db.Column('learner_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('subject_id', db.Integer, db.ForeignKey('subject.id'))
 )
@@ -30,27 +31,46 @@ class User(db.Model):
     role = db.Column(db.SmallInteger, default = ROLE_USER)
     
     #Requests Made
-    requests = db.relationship('Request', backref = 'author', lazy = 'dynamic')
+    requests = db.relationship('Request', backref = 'author')
 
-    subjectsITutor = db.relationship('Subject', 
-        secondary = tutorsForSubjects, 
-        backref = db.backref('tutors', lazy = 'dynamic'), 
-        lazy = 'dynamic')
+    #I can ask for <user>.tutoring and <subject>.tutors
+    tutoring = db.relationship('Subject', 
+        secondary = tutorsSubjects, 
+        backref = db.backref('tutors'))
 
-    #Add classes
-    def teachSubject(self, subject):
-        if not self.is_teaching(subject):
-            self.subjectsITutor.append(subject)
+    #I can ask for <user>.learning and <subject>.learners
+    learning = db.relationship('Subject', 
+        secondary = tutorsSubjects, 
+        backref = db.backref('learners'))
+
+    #Add classes to tutor
+    def tutor_subject(self, subject):
+        if not self.is_tutoring(subject):
+            self.tutoring.append(subject)
             return self
 
-    def unteach(self, subject):
-        if self.is_teaching(subject):
-            self.subjectsITutor.remove(subject)
+    def untutor_subject(self, subject):
+        if self.is_tutoring(subject):
+            self.tutoring.remove(subject)
             return self
 
-    def is_teaching(self, subject):
-        return self.subjectsITutor.filter(tutorsForSubjects.c.subject_id == subject.id).count() > 0
+    def is_tutoring(self, subject):
+        return subject in self.tutoring
 
+    #Add classes to learn
+    def learn_subject(self, subject):
+        if not self.is_learning(subject):
+            self.learning.append(subject)
+            return self
+
+    def unlearn_subject(self, subject):
+        if self.is_learning(subject):
+            self.learning.remove(subject)
+            return self
+
+    def is_learning(self, subject):
+        return subject in self.learning
+    
     #Necessary methods for Flask-Login
     def is_authenticated(self):
         return True
@@ -93,11 +113,13 @@ class Request(db.Model):
 
 class Subject(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100))
+    name = db.Column(db.String(32))
+    title = db.Column(db.String(64))
+
 
     #List of requests about this subject
     requests = db.relationship('Request', backref = 'subject', lazy = 'dynamic')
 
     def __repr__(self):
-        return '<Subject %r>' % (self.name)
+        return '<Subject %r>' % (self.title)
 

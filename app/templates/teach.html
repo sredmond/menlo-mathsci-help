@@ -1,136 +1,134 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container-fluid">
-	<h2>The Teaching Zone</h2>
-	<p>
-		We're so glad that you want to tutor students. It is incredibly rewarding, and can even be fun! Keep in mind that these students are relying on you for help - as such, it is not a light responsibility. It is your job to show up to every session prepared and ready to engage your student to your utmost.
-	</p>
-	<p>
-		When you fill out and submit this form, you'll see a page showing requests from students <em>for only the classes that you can help with</em>. More precisely, if their request contains any classes that you've said you can help with, you'll see it. You'll also see a sample email - we encourage you to reach out to the student first, and from there build a relationship.
-	</p>
-	<div id="alert" class="alert alert-error alert-block hidden">
-  		<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		<span id="alert-text"></span>
-	</div>
-	<form id="submitTeacher" action="submitTeacher" method="post" class="form-horizontal">
-		<fieldset>
-			<legend>About You</legend>
-			<div id="first-name-control-group" class="control-group">
-				<label class="control-label" for="first-name">First Name</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-font"></i></span>
-						<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
-					</div>
-					<span id="first-name-label" class="label"></span>
-				</div>
-			</div>
-			<div id="last-name-control-group" class="control-group">
-				<label class="control-label" for="last-name">Last Name</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on"><i class="icon-font"></i></span>
-						<input class="span2" id="last-name" name="last_name" type="text" placeholder="Last Name">
-					</div>
-					<span id="last-name-label" class="label"></span>	
-				</div>
-			</div>
-			<div id="grade-control-group" class="control-group">
-				<label class="control-label" for="grade">Grade</label>
-				<div class="controls">
-					<div class="input-prepend">
-						<span class="add-on">#</span>
-						<input class="span2" id="grade" name="grade" type="number" min=9 max=12 placeholder="Between 9 and 12">
-					</div>
-					<span id="grade-label" class="label"></span>
-				</div>
-			</div>
-			<div id="email-control-group" class="control-group">
-				<label class="control-label" for="email">Email Address</label>
-				<div class="controls">
-					<div class="input-prepend input-append">
-						<span class="add-on"><i class="icon-envelope"></i></span>
-						<input class="span2" id="email" name="email" type="text" placeholder="example">
-						<span class="add-on">@menloschool.org</span>
-					</div>
-					<span id="email-label" class="label"></span>
-				</div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>What class(es) can you help with?</legend>
-			<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
-			<select id="science" name="science" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
-				<optgroup label="Physics">
-					<option value="fresh_phys">Freshman Physics</option>
-					<option value="ap_phys_b">AP Physics B</option>
-					<option value="ap_phys_c">AP Physics C</option>
-				</optgroup>
-				<optgroup label="Chemistry">
-					<option value="conc_chem">Conceptual Chemistry</option>
-					<option value="accel_chem">Accelerated Chemistry</option>
-					<option value="ap_chem">AP Chemistry</option>
-					<option value="o_chem">Organic Chemistry</option>
-				</optgroup>
-				<optgroup label="Biology">
-					<option value="bio">Biology</option>
-					<option value="at_bio">AT Biology</option>
-					<option value="anat_and_phys">Anatomy and Physiology</option>
-				</optgroup>
-				<optgroup label="Other">
-					<option value="apes">AP Environmental Science</option>
-				</optgroup>
-			</select>
-			<select id="math" name="math" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
-				<optgroup label="Algebra 1">
-					<option value="inter_alg">Intermediate Algebra</option>
-				</optgroup>
-				<optgroup label="Geometry">
-					<option value="geo">Analytic Geometry</option>
-					<option value="geoh">Analytic Geometry (H)</option>
-				</optgroup>
-				<optgroup label="Algebra 2">
-					<option value="a2">Algebra 2</option>
-					<option value="a2h">Algebra 2 (H)</option>
-				</optgroup>
-				<optgroup label="Precalculus">
-					<option value="fst">Functions, Statistics, and Trigonometry</option>
-					<option value="pop">Principles of Precalculus</option>
-					<option value="apc">Analytical Precalculus</option>
-					<option value="pch">Precalculus (H)</option>
-				</optgroup>
-				<optgroup label="Calculus">
-					<option value="calc">Intro to Calculus</option>
-					<option value="calc_ab">AP Calculus AB</option>
-					<option value="calc_bc">AP Calculus BC</option>
-				</optgroup>
-				<optgroup label="Other">
-					<option value="stats">Statistics</option>
-					<option value="ap_stats">AP Statistics</option>
-					<option value="at_math">AT Math</option>
-				</optgroup>
-			</select>
-			<select id="cs_as" name="cs_as" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
-				<optgroup label="Computer Science">
-					<option value="intro_cs">Intro to Programming</option>
-					<option value="ap_cs">AP Computer Science</option>
-					<option value="at_cs">AT Computer Science</option>
-				</optgroup>
-				<optgroup label="Applied Science">
-					<option value="asr">ASR (H)</option>
-					<option value="biotech">Biotechnology/Science Research</option>
-					<option value="robo">Electronics/Robotics</option>
-				</optgroup>
-				<optgroup label="Engineering">
-					<option value="eng1">Fundamentals of Engineering</option>
-					<option value="eng2">Entrepreneurship Engineering</option>
-				</optgroup>
-				<optgroup label="Other">
-					<option value="tool_safety">Design Thinking and Tool Safety (IS)</option>
-				</optgroup>
-			</select>
-		</fieldset>
-		<button type="submit" class="btn btn-primary">Submit!</button>
-	</form>
+<h2>The Teaching Zone</h2>
+<p>
+	We're so glad that you want to tutor students. It is incredibly rewarding, and can even be fun! Keep in mind that these students are relying on you for help - as such, it is not a light responsibility. It is your job to show up to every session prepared and ready to engage your student to your utmost.
+</p>
+<p>
+	When you fill out and submit this form, you'll see a page showing requests from students <em>for only the classes that you can help with</em>. More precisely, if their request contains any classes that you've said you can help with, you'll see it. You'll also see a sample email - we encourage you to reach out to the student first, and from there build a relationship.
+</p>
+<div id="alert" class="alert alert-error alert-block hidden">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<span id="alert-text"></span>
 </div>
+<form id="submitTeacher" action="submitTeacher" method="post" class="form-horizontal">
+	<fieldset>
+		<legend>About You</legend>
+		<div id="first-name-control-group" class="control-group">
+			<label class="control-label" for="first-name">First Name</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-font"></i></span>
+					<input class="span2" id="first-name" name="first_name"type="text" placeholder="First Name">
+				</div>
+				<span id="first-name-label" class="label"></span>
+			</div>
+		</div>
+		<div id="last-name-control-group" class="control-group">
+			<label class="control-label" for="last-name">Last Name</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-font"></i></span>
+					<input class="span2" id="last-name" name="last_name" type="text" placeholder="Last Name">
+				</div>
+				<span id="last-name-label" class="label"></span>	
+			</div>
+		</div>
+		<div id="grade-control-group" class="control-group">
+			<label class="control-label" for="grade">Grade</label>
+			<div class="controls">
+				<div class="input-prepend">
+					<span class="add-on">#</span>
+					<input class="span2" id="grade" name="grade" type="number" min=9 max=12 placeholder="Between 9 and 12">
+				</div>
+				<span id="grade-label" class="label"></span>
+			</div>
+		</div>
+		<div id="email-control-group" class="control-group">
+			<label class="control-label" for="email">Email Address</label>
+			<div class="controls">
+				<div class="input-prepend input-append">
+					<span class="add-on"><i class="icon-envelope"></i></span>
+					<input class="span2" id="email" name="email" type="text" placeholder="example">
+					<span class="add-on">@menloschool.org</span>
+				</div>
+				<span id="email-label" class="label"></span>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>What class(es) can you help with?</legend>
+		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
+		<select id="science" name="science" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
+			<optgroup label="Physics">
+				<option value="fresh_phys">Freshman Physics</option>
+				<option value="ap_phys_b">AP Physics B</option>
+				<option value="ap_phys_c">AP Physics C</option>
+			</optgroup>
+			<optgroup label="Chemistry">
+				<option value="conc_chem">Conceptual Chemistry</option>
+				<option value="accel_chem">Accelerated Chemistry</option>
+				<option value="ap_chem">AP Chemistry</option>
+				<option value="o_chem">Organic Chemistry</option>
+			</optgroup>
+			<optgroup label="Biology">
+				<option value="bio">Biology</option>
+				<option value="at_bio">AT Biology</option>
+				<option value="anat_and_phys">Anatomy and Physiology</option>
+			</optgroup>
+			<optgroup label="Other">
+				<option value="apes">AP Environmental Science</option>
+			</optgroup>
+		</select>
+		<select id="math" name="math" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
+			<optgroup label="Algebra 1">
+				<option value="inter_alg">Intermediate Algebra</option>
+			</optgroup>
+			<optgroup label="Geometry">
+				<option value="geo">Analytic Geometry</option>
+				<option value="geoh">Analytic Geometry (H)</option>
+			</optgroup>
+			<optgroup label="Algebra 2">
+				<option value="a2">Algebra 2</option>
+				<option value="a2h">Algebra 2 (H)</option>
+			</optgroup>
+			<optgroup label="Precalculus">
+				<option value="fst">Functions, Statistics, and Trigonometry</option>
+				<option value="pop">Principles of Precalculus</option>
+				<option value="apc">Analytical Precalculus</option>
+				<option value="pch">Precalculus (H)</option>
+			</optgroup>
+			<optgroup label="Calculus">
+				<option value="calc">Intro to Calculus</option>
+				<option value="calc_ab">AP Calculus AB</option>
+				<option value="calc_bc">AP Calculus BC</option>
+			</optgroup>
+			<optgroup label="Other">
+				<option value="stats">Statistics</option>
+				<option value="ap_stats">AP Statistics</option>
+				<option value="at_math">AT Math</option>
+			</optgroup>
+		</select>
+		<select id="cs_as" name="cs_as" form="submitTeacher" multiple="multiple" size="21" class="pull-left span4">
+			<optgroup label="Computer Science">
+				<option value="intro_cs">Intro to Programming</option>
+				<option value="ap_cs">AP Computer Science</option>
+				<option value="at_cs">AT Computer Science</option>
+			</optgroup>
+			<optgroup label="Applied Science">
+				<option value="asr">ASR (H)</option>
+				<option value="biotech">Biotechnology/Science Research</option>
+				<option value="robo">Electronics/Robotics</option>
+			</optgroup>
+			<optgroup label="Engineering">
+				<option value="eng1">Fundamentals of Engineering</option>
+				<option value="eng2">Entrepreneurship Engineering</option>
+			</optgroup>
+			<optgroup label="Other">
+				<option value="tool_safety">Design Thinking and Tool Safety (IS)</option>
+			</optgroup>
+		</select>
+	</fieldset>
+	<button type="submit" class="btn btn-primary">Submit!</button>
+</form>
 {% endblock %}

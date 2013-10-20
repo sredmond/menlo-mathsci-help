@@ -1,4 +1,4 @@
-/* Body
+/* Resize the header for iPhones and iPads
 -------------------------------------------------- */
 @media (min-width: 980px) {
   body {
@@ -7,7 +7,7 @@
   }
 }
 
-/* Footer
+/* Get the footer to stay at the bottom of the page
 -------------------------------------------------- */
 
 html, body {
@@ -16,16 +16,14 @@ html, body {
 
 #wrap {
   min-height: 100%;
-}
-
-#main {
   overflow:auto;
-  padding-bottom:125px; /* this needs to be bigger than footer height*/
+  padding-bottom:0px;
+  margin-bottom:145px; /* this needs to be bigger than footer height*/
 }
 
 .footer {
-  padding: 20px 0 0 0;
-  margin-top: -125px; /* negative value of footer height */
+  padding-top: 20px;
+  margin-top:-145px;
   height: 125px;
   position: relative;
   clear:both;
@@ -35,6 +33,9 @@ html, body {
   text-align: center;
   
 }
+
+/* Style the footer
+ **************************/
 .footer p {
   margin-bottom: 0;
   color: #777;

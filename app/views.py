@@ -89,6 +89,8 @@ def signup():
             grade=grade,
             role=ROLE_ADMIN)
 
+
+
         db.session.add(user)
         db.session.commit()
         flash("Logged in successfully.")
