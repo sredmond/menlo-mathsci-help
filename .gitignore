@@ -39,13 +39,12 @@ nosetests.xml
 #Virtual Environment
 venv
 
-#Request and Feedback pickled arrays
-requests/*
-feedback/*
-
 #Ignore database storage
 db_*
 app.db
 
 #Ignore tmp
 tmp/*
+
+#Don't look at my configuration files!
+config.py
