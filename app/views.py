@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from app import app, db, lm
+from flask.ext.mail import Message
+from app import app, db, lm, mail
 from forms import LoginForm
 from models import User, Request, Subject, ROLE_USER, ROLE_ADMIN 
 from bcrypt import hashpw, gensalt
@@ -107,6 +108,15 @@ def signup():
         login_user(user)
         return redirect(url_for('me'))
     return render_template('signup.html')
+
+@app.route('/reset_password', methods = ['GET', 'POST'])
+def reset_password():
+    if g.user is not None and g.user.is_authenticated(): #The user is already logged in
+        return redirect(url_for('me'))
+    #They hit the submit button
+    if request.method == 'POST':
+        pass #SEND AN EMAIL
+    return render_template('reset_password.html')
 
 @app.route('/user/<int:user_id>')
 def show_user(user_id=None):
