@@ -93,11 +93,13 @@ ______________ ______________
 <meta name="author" content="Sam Redmond">
 
 <!-- Styles -->
-<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/extra_styles.css" rel="stylesheet">
 
 <!-- Touch and fav icons -->
 <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+
+<script src="/static/js/moment.min.js"></script> <!--Moment.js has to load before the page does, so that it can create dates client side-->
 
 </head>
 <body>
@@ -118,6 +120,9 @@ ______________ ______________
               <li><a href="/">Home</a></li>
               <li><a href={{ url_for('learn') }}>Learn</a></li>
               <li><a href={{ url_for('teach') }}>Teach</a></li>
+              {% if g.user.role == 1 %}
+              <li><a href={{ url_for('admin') }}>Admin</a></li>
+              {% endif %}
               <li class="dropdown">
                 <a href={{ url_for('teach') }} class="dropdown-toggle" data-toggle="dropdown">Me<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -188,7 +193,7 @@ ______________ ______________
   <!-- Scripts -->
   <!-- Placed at the end of the document so the pages load faster-->
   <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/main.js"></script>
 </body>
 </html>

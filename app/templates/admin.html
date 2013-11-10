@@ -16,6 +16,10 @@
 					<dd>{{ u.grade }}</dd>
 					<dt>Role</dt>
 					<dd>{{ u.role }}</dd>
+					<dt>Created</dt>
+					<dd>{{ momentjs(u.created).format('LLLL') }}</dd>
+					<dt>Last Logged In</dt>
+					<dd>{{ momentjs(u.last_logged_in).format('LLLL') }}</dd>
 					<dt>Tutoring</dt>
 					<dd>
 						{% for subj in u.tutoring %}
@@ -66,7 +70,7 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrequests" href={{ "#collapserequest%s" % loop.index }}>
-				{{ r.id }}: {{ r.title }} for {{ r.subject.title }} <small>(by {{ r.author.first_name }} {{ r.author.last_name }})</small>
+				{{ r.id }}: {{ r.title }} for {{ r.subject.title }} <small>({{momentjs(r.timestamp).calendar()}} by {{ r.author.first_name }} {{ r.author.last_name }})</small>
 			</a>
 		</div>
 		<div id={{ "collapserequest%s" % loop.index }} class="accordion-body collapse">
@@ -132,9 +136,9 @@
 					<dd>
 						{% for r in s.requests %}
 							{% if loop.first %}
-								{{ r.title }} ({{ r.subject.title }})
+								{{ r.title }}
 							{% else %}
-								, {{ r.title }} ({{ r.subject.title }})
+								, {{ r.title }}
 							{% endif %}
 						{% else %}
 							No requests available.

@@ -30,7 +30,7 @@
 		{{ user.first_name }} is not learning any subjects. This shouldn't ever happen.
 	{% endfor %}
 	<h2>Requests</h2>
-	{{ user.first_name}} has made {{ user.requests|length }} request(s) for help. For privacy reasons, we don't divulge each request individually.
+	{{ user.first_name}} has made {{ user.requests|length }} request(s) for help. For privacy reasons, we don't divulge each individual request.
 {% else %}
 	<div class="alert alert-error">
 		<strong>Error!</strong> The specified user does not exist in the database.

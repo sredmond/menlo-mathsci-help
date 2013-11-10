@@ -1,10 +1,15 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from flask.ext.mail import Message
-from app import app, db, lm, mail
+from app import app, db, lm
 from forms import LoginForm
 from models import User, Request, Subject, ROLE_USER, ROLE_ADMIN 
 from bcrypt import hashpw, gensalt
+from emails import send_email
+from os import urandom
+from datetime import datetime
+
+PASSWORD_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+?'
+NEW_PASSWORD_LENGTH = 13;
 
 @lm.user_loader
 def load_user(id):
@@ -57,6 +62,10 @@ def login():
             flash('Incorrect password. Please try again.')
             return redirect(url_for('login'))
         
+        now = datetime.utcnow()
+        user.last_logged_in = now
+        db.session.add(user)
+        db.session.commit()
         login_user(user, remember = remember_me)
         return redirect(request.args.get('next') or url_for('me'))
     return render_template('login.html', 
@@ -83,12 +92,15 @@ def signup():
         last_name = info['last_name']
         grade = int(info['grade'])
 
+        now = datetime.utcnow()
         user = User(email=email, 
             hashed_password=hashed_password, 
             first_name=first_name,
             last_name=last_name,
             grade=grade,
-            role=ROLE_ADMIN)
+            role=ROLE_USER,
+            created=now,
+            last_logged_in=now)
 
         tutoring_classes = info.getlist('tutor_science') + info.getlist('tutor_math') + info.getlist('tutor_cs_as')
         for cl in tutoring_classes:
@@ -115,8 +127,32 @@ def reset_password():
         return redirect(url_for('me'))
     #They hit the submit button
     if request.method == 'POST':
-        pass #SEND AN EMAIL
-    return render_template('reset_password.html')
+        email = request.form['email']
+        if len(email) == 0:
+            flash("You didn't enter anything! Please enter an email.")
+            return redirect(url_for('reset_password'))
+        u = User.query.filter_by(email=email).first()
+        if u is None: #email not in database
+            flash("That email address isn't in our database. Please enter another, or sign up for an account.")
+            return redirect(url_for('reset_password'))
+        try:
+            new_pass = ''.join(PASSWORD_CHARS[ord(urandom(1)) % 64] for i in xrange(NEW_PASSWORD_LENGTH))
+            send_email('Password Reset Notification', [email], 
+                render_template('reset_password_email.txt', user = u, new_pass=new_pass),
+                render_template('reset_password_email.html', user = u, new_pass=new_pass))
+            hashed_password = hashpw(new_pass, gensalt())
+            u.hashed_password = hashed_password
+            db.session.add(u)
+            db.session.commit()
+            flash("Password Reset. Email sent successfully to '{0}'.".format(email))
+            return redirect(url_for('index'))
+        except Exception as e:
+            flash("Uh oh! Looks like we couldn't send that email. Are you sure you entered the email address correctly?")
+            flash("Specific error: {0}".format(repr(e)))
+            return(redirect(url_for('reset_password')))
+        
+    return render_template('reset_password.html',
+        title="Reset Password")
 
 @app.route('/user/<int:user_id>')
 def show_user(user_id=None):
@@ -132,12 +168,14 @@ def learn():
 
         subj = Subject.query.filter_by(title=info['subj_title']).first()
         if subj != None:
+            now = datetime.utcnow()
             req = Request(title=info['title'],
                 issue=info['issue'],
                 body=info['challenge'],
                 extra_requests=info['requests'],
                 availability=info['availability'],
-                additional=info['additional_comments'])
+                additional=info['additional_comments'],
+                timestamp=now)
 
             subj.add_request(req)
             g.user.make_request(req)

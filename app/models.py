@@ -27,6 +27,10 @@ class User(db.Model):
     last_name = db.Column(db.String(20))
     grade = db.Column(db.SmallInteger)
     
+    #Timing
+    created = db.Column(db.DateTime)
+    last_logged_in = db.Column(db.DateTime)
+
     #Administrative
     role = db.Column(db.SmallInteger, default = ROLE_USER)
     

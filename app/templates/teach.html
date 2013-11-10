@@ -5,14 +5,14 @@
 	We're so glad that you want to tutor students. It is incredibly rewarding, and can even be fun! Keep in mind that these students are relying on you for help - as such, it is not a light responsibility. It is your job to show up to every session prepared and ready to engage your student to your utmost.
 </p>
 <p>
-	Below is a list of requests for help in classes you can tutor. In the future, expect to be able to filter this list more.
+	Below is a list of requests for help in classes you can tutor. In the future, you might be able to filter this list.
 </p>
 <div class="accordion" id="accordion">
 	{% for r in requests %}
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href={{ "#collapse%s" % loop.index }}>
-				{{ r.title }} <small>by {{ r.author.first_name }} {{ r.author.last_name }} at {{ r.pretty_time }} GMT</small>
+				{{ r.title }} <small>{{momentjs(r.timestamp).fromNow()}} by {{ r.author.first_name }} {{ r.author.last_name }}, </small>
 			</a>
 		</div>
 		<div id={{ "collapse%s" % loop.index }} class="accordion-body collapse">
