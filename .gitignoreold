@@ -39,5 +39,12 @@ nosetests.xml
 #Virtual Environment
 venv
 
-#Ignore whatever development database I'm working with
+#Ignore database storage
+db_*
 app.db
+
+#Ignore tmp
+tmp/*
+
+#Don't look at my configuration files!
+config.py
