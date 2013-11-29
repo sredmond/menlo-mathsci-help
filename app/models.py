@@ -33,7 +33,7 @@ class User(db.Model):
     last_logged_in = db.Column(db.DateTime)
 
     #Administrative
-    role = db.Column(db.SmallInteger, default = ROLE_SUPER)
+    role = db.Column(db.SmallInteger, default = ROLE_USER)
     
     #Requests Made
     requests = db.relationship('Request', backref = 'author')

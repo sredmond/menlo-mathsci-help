@@ -21,27 +21,19 @@
 					<dd>{{ momentjs(u.last_logged_in).format('LLLL') }}</dd>
 					<dt>Tutoring</dt>
 					<dd>
-						{% for subj in u.tutoring %}
-							{% if loop.first %}
-								{{ subj.title }}
-							{% else %}
-								, {{ subj.title }}
-							{% endif %}
+						{% if u.tutoring|length > 0 %}
+							{{ u.tutoring|join(", ", attribute='title')}}
 						{% else %}
 							Not tutoring any subjects.
-						{% endfor %}
+						{% endif %}
 					</dd>
 					<dt>Learning</dt>
 					<dd>
-						{% for subj in u.learning %}
-							{% if loop.first %}
-								{{ subj.title }}
-							{% else %}
-								, {{ subj.title }}
-							{% endif %}
+						{% if u.learning|length > 0 %}
+							{{ u.learning|join(", ", attribute='title')}}
 						{% else %}
-							Not learning any subjects. This shouldn't ever happen.
-						{% endfor %}
+							Not learning any subjects.
+						{% endif %}
 					</dd>
 					<dt>Requests</dt>
 					<dd>
@@ -57,7 +49,6 @@
 					</dd>
 					<dt>Role</dt>
 					<dd>{{ u.role }}</dd>
-					<div class="pull-right"> <button class="btn btn-small btn-info" value={{ u.id }}>Promote/Demote</button></div>
 				</dl>
 			</div>
 		</div>
@@ -136,15 +127,11 @@
 					</dd>
 					<dt>Requests</dt>
 					<dd>
-						{% for r in s.requests %}
-							{% if loop.first %}
-								{{ r.title }}
-							{% else %}
-								, {{ r.title }}
-							{% endif %}
+						{% if s.requests|length > 0 %}
+							{{ s.requests|join(", ", attribute='title')}}
 						{% else %}
 							No requests available.
-						{% endfor %}
+						{% endif %}
 					</dd>
 				</dl>
 			</div>

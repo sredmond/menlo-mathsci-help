@@ -131,11 +131,12 @@ ______________ ______________
                 <ul class="dropdown-menu">
                   <li class="nav-header">Go To</li>
                   <li><a href={{ url_for('me') }}>My Headquarters</a></li>
-                  <li><a href={{ url_for('show_user', user_id=g.user.id) }}>My Profile</a></li>
+                  <li><a href={{ url_for('show_user', user_id=g.user.id) }}>My Public Profile</a></li>
                   <li class="divider"></li>
                   <li class="nav-header">Options</li>
                   <li><a href={{ url_for('learn') }}>Learn Now</a></li>
                   <li><a href={{ url_for('teach') }}>Teach Now</a></li>
+                  <li><a href={{ url_for('teach') }}>Edit my Profile</a></li>
                 </ul>
               </li>
             </ul>

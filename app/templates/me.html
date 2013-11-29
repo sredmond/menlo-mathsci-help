@@ -1,11 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>{{ g.user.first_name}}'s Headquarters</h1>
-<div class="well">
-	<p>Hey {{ g.user.first_name }}, thanks for stopping by! If you need to learn</p>
+<h1>{{ g.user.first_name}}'s HQ</h1>
+<div class="alert alert-info">
+	Hey {{ g.user.first_name }}, thanks for stopping by! Are you ready to get started? Click on one of the buttons below to begin.
 </div>
-<ul>
-	<li><a href={{ url_for('learn') }}>Learn</a></li>
-	<li><a href={{ url_for('teach') }}>Teach</a></li>
-</ul>
+<div class="row-fluid">
+    <a href= {{ url_for('learn') }} class="btn btn-primary btn-large span6">Learn &raquo;</a>
+    <a href= {{ url_for('teach') }} class="btn btn-success btn-large span6">Teach &raquo;</a>
+</div>
+<hr />
+<h3>Account Information<small> <a href={{ url_for('edit') }}>Edit my profile</a></small></h3>
+<dl class="dl-horizontal">
+	<dt>Grade</dt>
+	<dd>{{ g.user.grade }}</dd>
+	<dt>Created</dt>
+	<dd>{{ momentjs(g.user.created).format('LLLL') }}</dd>
+	<dt>Last Logged In</dt>
+	<dd>{{ momentjs(g.user.last_logged_in).format('LLLL') }}</dd>
+	<dt>Tutoring</dt>
+	<dd>
+		{% if g.user.tutoring|length > 0 %}
+			{{ g.user.tutoring|join(", ", attribute='title') }}
+		{% else %}
+			<span class='text-error'>You aren't signed up to tutor any subjects. Why don't you <a href={{ url_for('edit') }}>edit your profile</a> now?</span>
+		{% endif %}
+	</dd>
+	<dt>Learning</dt>
+	<dd>
+		{% if g.user.learning|length > 0 %}
+			{{ g.user.learning|join(", ", attribute='title') }}
+		{% else %}
+			<span class='text-error'>You aren't signed up as learning any subjects. Why don't you <a href={{ url_for('edit') }}>edit your profile</a> now?</span>
+		{% endif %}
+	</dd>
+	<dt>Requests</dt>
+	<dd>
+		{% if g.user.requests|length > 0 %}
+			{{ g.user.requests|join(", ", attribute='title') }}
+		{% else %}
+			<span class='text-error'>Looks like you haven't requested any help? Why don't you <a href={{ url_for('learn') }}>begin</a> now?</span>
+		{% endif %}
+	</dd>
+</dl>
 {% endblock %}
