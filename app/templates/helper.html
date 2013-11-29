@@ -1,0 +1,8 @@
+{% macro info(title='') -%}
+	<a href="#" rel="tooltip" title="{{title}}" tabindex="-1"><i class="icon-info-sign"></i></a>
+{%- endmacro %}
+
+{%- macro textarea(name, value='', rows=10, cols=40) -%}
+    <textarea name="{{ name }}" rows="{{ rows }}" cols="{{ cols
+        }}">{{ value|e }}</textarea>
+{%- endmacro %}

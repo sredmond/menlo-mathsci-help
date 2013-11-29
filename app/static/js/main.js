@@ -65,6 +65,58 @@ $(document).ready(function()
 		return patt.test(str);
 	}
 
+	/** 
+	* Verify a LEARN request before it is sent to the server.
+	* Possible Errors:
+	* No class selected
+	* 'Other' issue selected but nothing filled in
+	* Nothing in the 'title' section
+	* Nothing in the 'specific challenge' section
+	*/
+	$("#submit_learn_request").click(function()
+	{
+		//An array to hold all the error messages.
+		var errors = new Array();
+
+		//Get values
+		var subj_title = escapeHTML($("#subj_title").val().trim());
+		var issue_type = escapeHTML($("input[name=issue]").filter(':checked').val().trim());
+		var elaboration = escapeHTML($("#elaboration").val().trim());
+		var title_text = escapeHTML($("#title").val().trim());
+		var challenge_text = escapeHTML($("#challenge").val().trim());
+		
+		if (isEmpty(subj_title))
+		{
+			errors.push("You must select a class in which you would like help.");
+		}
+		if (["hw","test","proj","other"].indexOf(issue_type) == -1)
+		{
+			errors.push("Please do not change the source code of the radio button values.");
+		}
+		if (issue_type == "other" && isEmpty(elaboration))
+		{
+			errors.push("You indicated an alternative type of challenge, yet failed to elaborate.");
+		}
+		if (isEmpty(title_text))
+		{
+			errors.push("You cannot have an empty title.");
+		}
+		if (isEmpty(challenge_text))
+		{
+			errors.push("You must say something in the speciic challenge field.");
+		}
+		//The moment of truth - are there errors?
+		if (errors.length > 0)
+		{
+			var error_str = errors.join(" ");
+			$("#alert").removeClass("hidden");
+			$("#alert-text").html(error_str);
+			$("html, body").animate({ scrollTop: 0 }, "slow"); //Scroll to the top
+			return false;
+		}
+		//Otherwise, the form is sent to the server.
+	});
+
 	//Verify a request before it is sent to the server
 	$("#submitRequest").submit(function()
 	{
@@ -140,66 +192,7 @@ $(document).ready(function()
 	{
 	    $("#subj_title").val($(this).text());
 	});
-	
-	//Fully validate a teach form submission
-	$("#submitTeacher").submit(function()
-	{
-		//Kinda a ghetto way to inform people of what error they made. Add the error message to a string.
-		var errors = new Array();
 
-		//Get the values
-		var first_name_text = escapeHTML($("#first-name").val().trim());
-		var last_name_text = escapeHTML($("#last-name").val().trim());
-		var grade_text = escapeHTML($("#grade").val().trim());
-		var email_text = escapeHTML($("#email").val().trim());
-
-		var num_classes_selected = $("option:selected").length;
-
-		//Specialized error messages
-		if (isEmpty(first_name_text))
-		{
-			errors.push("Your first name cannot be empty.");
-		}
-		else if (!isAlpha(first_name_text))
-		{
-			errors.push("Your first name must be composed of letters only.");
-		}
-		if (isEmpty(last_name_text))
-		{
-			errors.push("Your last name cannot be empty.");
-		}
-		else if (!isAlpha(last_name_text))
-		{
-			errors.push("Your last name must be composed of letters only.");
-		}
-		if (!(grade_text==='9' || grade_text==='10' || grade_text==='11' || grade_text==='12'))
-		{
-			errors.push("Your grade must be either '9', '10', '11', or '12'.");	
-		}
-		if (isEmpty(email_text))
-		{
-			errors.push("Your email cannot be empty");
-		}
-		else if (!isEmail(email_text))
-		{
-			errors.push("Your email must contain only letters, numbers, or any of '._+-'.");
-		}
-		if (num_classes_selected == 0)
-		{
-			errors.push("You must select at least one class.");
-		}
-
-		//The moment of truth - are there errors?
-		if (errors.length > 0)
-		{
-			var error_str = errors.join(" ");
-			$("#alert").removeClass("hidden");
-			$("#alert-text").html(error_str);
-			$("html, body").animate({ scrollTop: 0 }, "slow"); //Scroll to the top
-			return false;
-		}
-		//Otherwise, the form is sent to the server.
-	});
 
 //Some clientside form validation
 	$("#first-name").blur(function()

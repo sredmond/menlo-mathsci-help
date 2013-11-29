@@ -121,6 +121,12 @@ def signup():
         return redirect(url_for('me'))
     return render_template('signup.html')
 
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit():
+    return render_template('edit.html',
+        title="Edit")
+
 @app.route('/reset_password', methods = ['GET', 'POST'])
 def reset_password():
     if g.user is not None and g.user.is_authenticated(): #The user is already logged in
@@ -131,9 +137,11 @@ def reset_password():
         if len(email) == 0:
             flash("You didn't enter anything! Please enter an email.")
             return redirect(url_for('reset_password'))
+        if not email.endswith("@menloschool.org"):
+            email += "@menloschool.org"
         u = User.query.filter_by(email=email).first()
         if u is None: #email not in database
-            flash("That email address isn't in our database. Please enter another, or sign up for an account.")
+            flash("The email address '{0}' isn't in our database. Try again, and this time make sure you entered the email correctly. Alternatively, sign up for an account.".format(email))
             return redirect(url_for('reset_password'))
         try:
             new_pass = ''.join(PASSWORD_CHARS[ord(urandom(1)) % 64] for i in xrange(NEW_PASSWORD_LENGTH))

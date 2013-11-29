@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% block content %}	
+{% block content %}
+{% if g.user.role == 1 %}	
 <h2>Users</h2>
 <div class="accordion" id="accordionusers">
 	{% for u in users %}
@@ -14,8 +15,6 @@
 				<dl class="dl-horizontal">
 					<dt>Grade</dt>
 					<dd>{{ u.grade }}</dd>
-					<dt>Role</dt>
-					<dd>{{ u.role }}</dd>
 					<dt>Created</dt>
 					<dd>{{ momentjs(u.created).format('LLLL') }}</dd>
 					<dt>Last Logged In</dt>
@@ -56,6 +55,9 @@
 							No requests available.
 						{% endfor %}
 					</dd>
+					<dt>Role</dt>
+					<dd>{{ u.role }}</dd>
+					<div class="pull-right"> <button class="btn btn-small btn-info" value={{ u.id }}>Promote/Demote</button></div>
 				</dl>
 			</div>
 		</div>
@@ -152,4 +154,9 @@
 	<p>There are no subjects in the database. This shouldn't happen. Make sure that add_subjects.py has been run.</p>
 	{% endfor %}
 </div>
+{% else %}
+<div class="alert alert-error">
+	<strong>Error!</strong> You are not an administrator.
+</div>
+{% endif %}
 {% endblock %}

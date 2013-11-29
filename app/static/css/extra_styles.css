@@ -7,6 +7,14 @@
   }
 }
 
+@media (max-width: 767px)
+{
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
 /* Get the footer to stay at the bottom of the page
 -------------------------------------------------- */
 html, body {

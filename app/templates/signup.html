@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% import 'helper.html' as forms %}
 {% block content %}
 <h2>Sign Up for the Math Science Help Center</h2>
 <p>
@@ -11,15 +12,17 @@
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<span id="alert-text"></span>
 </div>
-<form id="signup" action="signup" method="post" class="form-horizontal">
+<form id="signup" action="/signup" method="post" class="form-horizontal">
 	<fieldset>
 		<legend>Account Details</legend>
 		<div id="email-control-group" class="control-group">
-			<label class="control-label" for="email">Email Address</label>
+			<label class="control-label" for="email">
+				Email Address {{ forms.info("Enter your Menlo School Email address") }}
+			</label>
 			<div class="controls">
 				<div class="input-prepend input-append">
 					<span class="add-on"><i class="icon-envelope"></i></span>
-					<input class="span2" id="email" name="email" type="text" placeholder="first.last">
+					<input class="span2" class="email" id="email" name="email" type="text" placeholder="first.last">
 					<span class="add-on">@menloschool.org</span>
 				</div>
 				<span id="email-label" class="label"></span>
@@ -27,24 +30,24 @@
 		</div>
 		<div id="password-control-group" class="control-group">
 			<label class="control-label" for="password">
-				Password <a href="#" rel="tooltip" title="A password must ____"><i class="icon-info-sign"></i></a>
+				Password {{ forms.info("A password must ___") }}
 			</label>
 			<div class="controls">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-font"></i></span>
-					<input class="span2" id="password" name="password" type="password" placeholder="Password">
+					<input class="span2 pass" id="password" name="password" type="password" placeholder="Password">
 				</div>
 				<span id="password-label" class="label"></span>
 			</div>
 		</div>
 		<div id="confirm-password-control-group" class="control-group">
 			<label class="control-label" for="confirm-password">
-				Confirm Password <a href="#" rel="tooltip" title="What you enter here must be the same as what you entered above."><i class="icon-info-sign"></i></a>
+				Confirm Password {{ forms.info("What you enter here must be the same as what you entered above.") }}
 			</label>
 			<div class="controls">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-font"></i></span>
-					<input class="span2" id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password">
+					<input class="span2 pass" id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password">
 				</div>
 				<span id="confirm-password-label" class="label"></span>
 			</div>
@@ -54,7 +57,7 @@
 		<legend>About You</legend>
 		<div id="first-name-control-group" class="control-group">
 			<label class="control-label" for="first-name">
-				First Name <a href="#" rel="tooltip" title="A first name must contain only letters (it match the regular expression '^[a-zA-Z]+$')"><i class="icon-info-sign"></i></a>
+				First Name {{ forms.info("A name may only contain upper- or lowercase letters ") }}
 			</label>
 			<div class="controls">
 				<div class="input-prepend">
@@ -65,7 +68,9 @@
 			</div>
 		</div>
 		<div id="last-name-control-group" class="control-group">
-			<label class="control-label" for="last-name">Last Name</label>
+			<label class="control-label" for="last-name">
+				Last Name {{ forms.info("A name may only contain upper- or lowercase letters ") }}
+			</label>
 			<div class="controls">
 				<div class="input-prepend">
 					<span class="add-on"><i class="icon-font"></i></span>
@@ -75,7 +80,9 @@
 			</div>
 		</div>
 		<div id="grade-control-group" class="control-group">
-			<label class="control-label" for="grade">Grade</label>
+			<label class="control-label" for="grade">
+				Grade {{ forms.info("Your grade must be either '9', '10', '11', or '12'") }}	
+			</label>
 			<div class="controls">
 				<div class="input-prepend">
 					<span class="add-on">#</span>
@@ -86,7 +93,7 @@
 		</div>
 	</fieldset>
 	<fieldset>
-		<legend>Math/Science Classes <em>You Could Tutor</em></legend>
+		<legend>Math/Science Classes <em>You Could Tutor</em> {{ forms.info("Only select the classes you are capable of tutoring.") }}</legend>
 		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
 		<select id="tutor_science" name="tutor_science" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Physics">
@@ -159,7 +166,7 @@
 		</select>
 	</fieldset>
 	<fieldset>
-		<legend>Math/Science Classes <em>You Are Currently Taking</em></legend>
+		<legend>Math/Science Classes <em>You Are Currently Taking</em> {{ forms.info("Only select the classes you are currently taking this school year.") }}</legend>
 		<p><small>To select multiple options, hold down the command key (&#8984;) on Mac or the control (CTRL) button on Windows.</small></p>
 		<select id="learn_science" name="learn_science" multiple="multiple" size="21" class="pull-left span4">
 			<optgroup label="Physics">
@@ -231,7 +238,7 @@
 			</optgroup>
 		</select>
 	</fieldset>
-	<p><small>By clicking sign up, you agree to our <a href={{ url_for('terms_and_conditions') }}>Terms and Conditions<a></small></p>
+	<p><small>By signing up, you agree to our <a href={{ url_for('terms_and_conditions') }}>Terms and Conditions</a></small></p>
 	<button type="submit" class="btn btn-primary" id="submit_button">Sign Up!</button>
 </form>
 {% endblock %}
