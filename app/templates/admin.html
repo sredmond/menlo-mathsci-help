@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if g.user.role == 1 %}	
+{% if g.user.role > 0 %}	
 <h2>Users</h2>
 <div class="accordion" id="accordionusers">
 	{% for u in users %}

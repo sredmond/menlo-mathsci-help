@@ -10,6 +10,8 @@ from datetime import datetime
 
 PASSWORD_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+?'
 NEW_PASSWORD_LENGTH = 13;
+ISSUE_MAP = {'hw':'Homework', 'proj': 'Project', 'test': 'Test'}
+
 
 @lm.user_loader
 def load_user(id):
@@ -55,7 +57,7 @@ def login():
         
         user = User.query.filter_by(email = email).first()
         if user is None:
-            flash('The email "{0}" is not stored in our databases.'.format(email))
+            flash('The email "{0}" is not stored in our database.'.format(email))
             return redirect(url_for('login'))
 
         if not user.verify_password(password):
@@ -174,12 +176,47 @@ def learn():
     if request.method=='POST': #Looking at the page
         info = request.form
 
+        '''
+        Server-side validation, in case bad data slips through
+        Possible Errors:
+            Invalid class selected
+            'Other' issue selected but nothing filled in
+            Nothing in the 'title' section
+            Nothing in the 'specific challenge' section
+        '''
         subj = Subject.query.filter_by(title=info['subj_title']).first()
-        if subj != None:
+        if subj == None:
+            flash("Invalid subject selected. Please leave page source alone.");
+            return redirect(url_for('learn'))
+        else:
             now = datetime.utcnow()
-            req = Request(title=info['title'],
-                issue=info['issue'],
-                body=info['challenge'],
+            issue=info['issue']
+            title=info['title']
+            body=info['challenge']
+
+            if issue == 'other':
+                elaboration=info['elaboration']
+                if elaboration == "" or elaboration == None:
+                    flash("Somehow, a blank issue type elaboration bypassed client-side validation :( Please leave page source and JS alone.");
+                    return redirect(url_for('learn'))
+                issue_str = elaboration
+            elif issue not in ISSUE_MAP:
+                flash("Somehow, an invalid issue type bypassed client-side validation :( Please leave page source and JS alone.");
+                return redirect(url_for('learn'))
+            else:
+                issue_str = ISSUE_MAP[issue]
+
+
+            if title == "" or title == None: #Remember, different browsers handle blank strings differently
+                flash("Somehow, an empty title bypassed client-side validation :( Please leave page source and JS alone.");
+                return redirect(url_for('learn'))
+            if body == "" or body == None:
+                flash("Somehow, a blank body bypassed client-side validation :( Please leave page source and JS alone.");
+                return redirect(url_for('learn'))
+
+            req = Request(title=title,
+                issue=issue_str,
+                body=body,
                 extra_requests=info['requests'],
                 availability=info['availability'],
                 additional=info['additional_comments'],
@@ -215,6 +252,21 @@ def admin():
         users=User.query.all(),
         requests=Request.query.all(),
         subjects=Subject.query.all())
+
+@app.route('/manage_users', methods=['GET', 'POST'])
+@login_required
+def manage_users():
+    if request.method == 'POST':
+        pass
+    else:
+        if g.user.role < 2:
+            flash("You don't have the proper clearance to see this webpage.")
+            return render_template('me.html',
+                title="Me")
+        return render_template('manage_users.html',
+            users = User.query.all(),
+            title="Manage Users")
+
 
 @app.route('/termsconditions')
 def terms_and_conditions():

@@ -2,6 +2,7 @@ from app import db
 import bcrypt
 ROLE_USER = 0
 ROLE_ADMIN = 1
+ROLE_SUPER = 2
 
 #Tutors are in the 'left' column, subjects are in the 'right'
 tutorsSubjects = db.Table('tutorsSubjects',
@@ -32,7 +33,7 @@ class User(db.Model):
     last_logged_in = db.Column(db.DateTime)
 
     #Administrative
-    role = db.Column(db.SmallInteger, default = ROLE_USER)
+    role = db.Column(db.SmallInteger, default = ROLE_SUPER)
     
     #Requests Made
     requests = db.relationship('Request', backref = 'author')

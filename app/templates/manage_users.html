@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if g.user.role == 2 %}
+<h2>Change User Roles.<small> The blue button indicates the user's old role.</small></h2>
+{%- macro radio(user_id, current_role=0) -%}
+<div class="btn-group" data-toggle="buttons-radio">
+{% if current_role == 0 %}
+	<button type="button" class="btn btn-info active">0</button>
+	<button type="button" class="btn">1</button>
+	<button type="button" class="btn">2</button>
+{% elif current_role == 1 %}
+	<button type="button" class="btn">0</button>
+	<button type="button" class="btn btn-info active">1</button>
+	<button type="button" class="btn">2</button>
+{% elif current_role == 2 %}
+	<button type="button" class="btn">0</button>
+	<button type="button" class="btn">1</button>
+	<button type="button" class="btn btn-info active">2</button>
+{% endif %}
+</div>
+{%- endmacro %}
+<form action="" name="manage_users" method="post">
+	{% for u in users %}
+	<div class="well well-small">
+		{{ u.first_name }} {{ u.last_name }}
+		{{ radio(u.id, current_role = u.role) }}
+	</div>
+	{% endfor %}
+	<button type="submit" class="btn btn-primary btn-large">Submit Changes</button>
+</form>
+
+{% else %}
+<div class="alert alert-error">
+	<strong>Error!</strong> OFF LIMITS.
+</div>
+{% endif %}
+{% endblock %}
